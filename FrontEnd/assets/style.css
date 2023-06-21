@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -81,7 +82,6 @@ h1 > span {
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
-	margin-left: 40%;
 	font-size: 30px;
 	color: #1D6154
 }
@@ -95,7 +95,6 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
 
 li:hover {
 	color: #B1663C;
@@ -189,26 +188,39 @@ footer nav ul {
 }
 
 
-
-/*****Ajout*******/
-
-nav li a {
-	list-style: none;
-	text-decoration: none;
-	color: #000;
-}
-nav li a:hover {
-	color: #B1663C;
-}
-
-.Modifier {
-	text-decoration: none;
-	list-style: none;
-	color: #000;
+.project {
 	display: flex;
-	justify-content: end;
-	position: absolute;
-	margin-left: 37%;
-    margin-top: -52px;
-    font-size: large;
+    justify-content: center;
+    padding: 5px;
+    border: 15px;
+	gap: 10px;
+	padding-bottom: 15px;
+    border-radius: 15px;
+}
+
+.project a {
+	background: #FFFEF8;
+	border-radius:40px;
+	border:1px solid #1d6154;
+
+	display:inline-block;
+	cursor:pointer;
+	color:#1d6154;
+	font-family: Syne;
+	font-size:17px;
+	padding:16px 29px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1d6154;
+}
+
+.project a:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+
+.login1{
+	color: #000;
+	text-decoration: none;
+	list-style: none;
 }
