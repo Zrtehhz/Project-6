@@ -198,7 +198,7 @@ footer nav ul {
     border-radius: 15px;
 }
 
-.project a {
+.project button {
 	background: #FFFEF8;
 	border-radius:40px;
 	border:1px solid #1d6154;
@@ -213,7 +213,7 @@ footer nav ul {
 	text-shadow:0px 1px 0px #1d6154;
 }
 
-.project a:hover {
+.project button:hover {
 	background-color: #1D6154;
 	color: white;
 }
