@@ -45,9 +45,12 @@ const images = [
 	}
 ];
 
+
+
+
 let btn = document.getElementsByTagName('button');
-let bannerImg = document.querySelectorAll('.ChoixImg');
-let Text = document.getElementsByTagName('figcaption');
+let bannerImg = document.createElement('.ChoixImg');
+let Text = document.createElement('figcaption');
 
 let hotel = document.querySelector('#hotel');
 let appart = document.querySelector('#appart');
@@ -66,17 +69,21 @@ function MasqueObjets() {
 }
 
 object.addEventListener('click', function () {
+	console.log('Objet ');
     MasqueObjets();
-    AfficheObjets();
 });
 
 
 hotel.addEventListener('click', function () {
+	console.log('Hotel ');
+
     MasqueObjets();
 });
 
 appart.addEventListener('click', function () {
-    MasqueObjets();
+	console.log('Appart ');
+
+    MasqueObjets(-1);
 });
 
 Array.from(btn).forEach(function (button) {
