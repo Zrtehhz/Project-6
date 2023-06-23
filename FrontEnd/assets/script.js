@@ -17,3 +17,16 @@ bouton.forEach((button) => {
     filtrerParCategorie(category);
   });
 });
+
+
+// Partie login
+
+let url = 'http://localhost:5678/api/users/login';
+
+fetch(url)
+.then(function() {
+
+})
+.catch(function() {
+
+});
