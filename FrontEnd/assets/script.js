@@ -20,13 +20,24 @@ bouton.forEach((button) => {
 
 
 // Partie login
+const login = {
+  email: 'string',
+  password: 'string'
+};
+const body = JSON.stringify(login);
 
-let url = 'http://localhost:5678/api/users/login';
 
-fetch(url)
-.then(function() {
-
+fetch('http://localhost:5678/api/users/login', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: body
 })
-.catch(function() {
 
-});
+.then(() => console.log("ok"))
+.catch();
+
+
+
+// Partie
