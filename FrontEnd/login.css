@@ -84,7 +84,7 @@ h2{
     display: flex;
     margin-top: 10%;
     justify-content: center;
-    margin-left: 85px;
+    margin-left: 5px;
 }
 nav ul {
 	display: flex;
@@ -179,6 +179,7 @@ input[type="submit"]{
 	background-color: #1D6154;
 	margin : 2em auto ;
 	width: 180px;
+	padding: 15px;
 	text-align: center;
 	border-radius: 60px ;
 }
@@ -221,7 +222,7 @@ nav li a:hover {
 .input1{
     display: flex;
     justify-content: center;
-    margin-left: 42.5%;
+    margin-left: 450px;
     padding: 15px;
     width: 250px;
     overflow: hidden;
@@ -239,12 +240,12 @@ nav li a:hover {
     text-decoration: none;
     color: #fff;
     background-color: #1D6154;
-    padding: 1%;
+    padding: 10px;
     border: 15px;
     border-radius: 20px;
     padding-left: 50px;
     padding-right: 50px;
-    margin-left: 46%;
+    margin-left:45px;
     margin-top: 5%;
     display: flex;
     justify-content: center;
@@ -253,7 +254,7 @@ nav li a:hover {
 .MdpLost {
     display: flex;
     justify-content: center;
-    margin-left: 105px;
+    margin-left: 5px;
     margin-top: 25px;
     color: #000;
     font-size: 12px;

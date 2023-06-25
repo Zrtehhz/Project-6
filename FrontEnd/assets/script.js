@@ -21,48 +21,35 @@ bouton.forEach((button) => {
 
 // Partie login
 
-const login = {
-  email: 'sophie.bluel@test.tld',
-  password: 's0phie',
-  }
+const login = "http://localhost:5678/api/users/login";
+const inputEmail = document.getElementById('email');
+const inputPass = document.getElementById('password');
+const submitButton = document.querySelector("input[type='submit']");
+const form = document.querySelector('login_form');
+
+const User = {
+  email: 'string', 
+  password:'string'
+}; 
 
 
-const body = JSON.stringify(login);
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  loginUser();
+
+});
 
 
-fetch('http://localhost:5678/api/users/login', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: body
-})
+input.addEventListener('input', (e) => {
+  inputEmail.reportValidity();
+  User.email = e.target.value;
+
+});
 
 
+input.addEventListener('input', (e) => {
+  inputPass.reportValidity();
+  User.password = e.target.value;
 
-.then(() => console.log("ok"))
 
-
-const postLogin = (req, res) => {
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (!user) {
-        return res.status(401).json({ error: 'Utilisateur non Autorisé !' });
-      }
-      bcrypt.compare(req.body.password, user.password)
-        .then(valid => {
-          if (!valid) {
-            return res.status(401).json({ error: 'Mot de passe incorrect !' });
-          }
-          res.status(200).json({
-            userId: 1,
-            token: jwt.sign(
-              { userId: 1 },
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4',
-            )
-          });
-        })
-        .catch(error => res.status(404).json({ error }));
-    })
-    .catch(error => res.status(500).json({ error }));
-};
+});

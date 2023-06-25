@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
         <meta name="description" content="">
-        <link rel="stylesheet" href="./style2.css">
+        <link rel="stylesheet" href="./login.css">
     </head>
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -23,13 +23,13 @@
     </header>
 <body>
     <h2>Log In</h2>
-    <form action="/users/login" method="POST">
+    <form id="login_Form" action="/users/login" method="POST">
         <label class="label1">E-mail</label>
-        <input class="input1" type="text">
+        <input class="input1"  type="email" name="email" id="email" placeholder="sophie.bluel@test.tld">
         <label class="label2">Mot de passe</label>
-        <input class="input1" type="password" required>
-    <a href="" class="buttonA">Se connecter</a>
-    <a href="" class="MdpLost">Mot de passe oublié</a>
+        <input  class="input1" type="password" id="password" name="password" min="4" max="60" value="S0phie" required>
+        <input class="buttonA" type="submit" value="Se connecter">
+        <a href="" class="MdpLost">Mot de passe oublié</a>
     </form>
 <script src="./assets/script.js"></script>
 </body>
