@@ -26,30 +26,3 @@ const inputEmail = document.getElementById('email');
 const inputPass = document.getElementById('password');
 const submitButton = document.querySelector("input[type='submit']");
 const form = document.querySelector('login_form');
-
-const User = {
-  email: 'string', 
-  password:'string'
-}; 
-
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  loginUser();
-
-});
-
-
-input.addEventListener('input', (e) => {
-  inputEmail.reportValidity();
-  User.email = e.target.value;
-
-});
-
-
-input.addEventListener('input', (e) => {
-  inputPass.reportValidity();
-  User.password = e.target.value;
-
-
-});
