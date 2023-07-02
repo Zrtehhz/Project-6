@@ -1,8 +1,14 @@
-let bouton = document.querySelectorAll('.project button');
+ let bouton = document.querySelectorAll('.project button');
 let images = document.querySelectorAll('.gallery figure');
+let url = 'http://localhost:5678/api/categories';
+let gallery = document.querySelector("gallery");
+let figure = document.createElement('figure');
+let img = document.createElement('img');
+let figcaption = document.createElement('figcaption');
 
 
-let filtrerParCategorie = (category) => {
+
+let filtrerParCategorie = (url) => {
 
   images.forEach((image) => {
     let imageId = image.querySelector('img').id;
@@ -13,7 +19,7 @@ let filtrerParCategorie = (category) => {
 
 bouton.forEach((button) => {
   button.addEventListener('click', () => {
-    let category = button.id; 
+    let url = button.id; 
     filtrerParCategorie(category);
   });
 });
@@ -21,8 +27,3 @@ bouton.forEach((button) => {
 
 // Partie login
 
-const login = "http://localhost:5678/api/users/login";
-const inputEmail = document.getElementById('email');
-const inputPass = document.getElementById('password');
-const submitButton = document.querySelector("input[type='submit']");
-const form = document.querySelector('login_form');
