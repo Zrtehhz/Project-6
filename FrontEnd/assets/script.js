@@ -1,8 +1,43 @@
 let url = 'http://localhost:5678/api/categories';
-let gallery = document.querySelector("gallery");
 let figure = document.createElement('figure');
 let img = document.createElement('img');
 let figcaption = document.createElement('figcaption');
+let gallery = document.querySelector("gallery");
+
+
+const filterBtns = document.querySelectorAll('button')
+
+const fetchData = async () => {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    if (response.status === 200) {
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          let id = userId.id
+          //   console.log(data)
+          data.filter((league) => {
+            let res = league.competition
+            if (res.includes(id)) {
+              return res
+            }
+          })
+        })
+      })
+      let output = data.map((result) => {
+        return ''
+      })
+      output = output.join(' ')
+      content.innerHTML = output
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+fetchData()
+
+
 
 // Partie login
 
