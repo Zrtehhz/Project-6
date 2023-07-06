@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Users = db.users;
 
-/* exports.signup = async (req, res) => {
+ exports.signup = async (req, res) => {
 	if(!req.body.email || !req.body.password){
 		return res.status(400).send({
 			message: "Must have email and password"
@@ -23,7 +23,7 @@ const Users = db.users;
 		});
 	}
 
-} */
+} 
 
 exports.login = async (req, res) => {
 	const user = await Users.findOne({where: {email: req.body.email}});

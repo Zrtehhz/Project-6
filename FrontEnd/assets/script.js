@@ -40,8 +40,11 @@ const filterjimmyByCategory = (categoryId) => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    categories.push({ id: 0, name: 'Tous' },...(await fetchData('http://localhost:5678/api/categories')));
-    jimmy.push(...(await fetchData('http://localhost:5678/api/works')));
+    const fetchedCategories = await fetchData('http://localhost:5678/api/categories');
+    categories.push({ id: 0, name: 'Tous' }, ...fetchedCategories);
+
+    const fetchedJimmy = await fetchData('http://localhost:5678/api/works');
+    jimmy.push(...fetchedJimmy);
 
     const filterContainer = document.getElementById('filtres');
     categories.forEach((category) => {
@@ -49,78 +52,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       button.textContent = category.name;
       button.dataset.categoryId = category.id;
       button.addEventListener('click', () => {
-        console.log('Il prend bien les données');
         filterjimmyByCategory(parseInt(button.dataset.categoryId));
-        document.querySelectorAll('.filter-button').forEach((btn) => btn.classList.remove('active'));
+        document.querySelectorAll('#filtres button').forEach((btn) => btn.classList.remove('active'));
         button.classList.add('active');
       });
+      
       filterContainer.appendChild(button);
     });
 
     generateGallery(jimmy);
   } catch (error) {
-    console.log('Il prend pas les données');
+    console.log('Erreur lors de la récupération des données');
   }
 });
 
-
-
-
-// Partie Login
-
-// Fonction de gestion de la connexion
-function handleLogin() {
-  // Récupérer l'élément du lien "Login"
-  const loginLink = document.querySelector('.login');
-
-  // Ajouter un gestionnaire d'événement au clic sur le lien "Login"
-  loginLink.addEventListener('click', function (event) {
-    event.preventDefault();
-
-    // Vérifier si l'utilisateur est connecté ou non
-    const token = window.sessionStorage.getItem('token');
-    if (token) {
-      // Utilisateur connecté, effectuer la déconnexion
-      window.sessionStorage.removeItem('token');
-      loginLink.textContent = 'Login';
-    } else {
-      // Utilisateur non connecté, effectuer la connexion
-      const email = prompt('Email:');
-      const password = prompt('Password:');
-
-      // Créer l'objet de données à envoyer
-      const loginData = {
-        email: 'sophie.bluel@test.tld',
-        password: 'S0phie'
-      };
-
-      // Envoyer la demande de connexion
-      fetch('http://localhost:5678/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)
-      })
-        .then((response) => {
-          if (response.ok) {
-            // Connexion réussie, stocker le token et mettre à jour le texte du lien
-            response.json().then((data) => {
-              window.sessionStorage.setItem('token', data.token);
-              loginLink.textContent = 'Logout';
-              // Rediriger vers la page d'accueil
-              window.location.href = 'index.html';
-            });
-          } else {
-            // Connexion échouée, afficher un message d'erreur
-            alert('Identifiants incorrects');
-          }
-        })
-        .catch((error) => {
-          console.log('Une erreur est survenue lors de la connexion:', error);
-        });
-    }
-  });
-}
-
-handleLogin();
