@@ -203,7 +203,6 @@ footer nav ul {
 	border-radius:40px;
 	border:1px solid #1d6154;
 
-	display:inline-block;
 	cursor:pointer;
 	color:#1d6154;
 	font-family: Syne;
@@ -221,6 +220,21 @@ footer nav ul {
 
 .login1{
 	color: #000;
+	text-decoration: none;
+	list-style: none;
+}
+
+.logout {
+	display: none;
+	color: #000;
+	text-decoration: none;
+	list-style: none;
+	font-weight: 600;
+
+}
+
+.edit-mode {
+	color: #b40000;
 	text-decoration: none;
 	list-style: none;
 }

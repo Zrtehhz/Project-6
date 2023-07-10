@@ -1,45 +1,43 @@
-// Fonction de gestion de la connexion
-function handleLogin() {
-  // Récupérer l'élément du lien "Login"
-  const loginLink = document.querySelector('.login_form');
-  
-  // Écouter l'événement de clic sur le lien "Login"
-  loginLink.addEventListener('click', () => {
-    // Récupérer les valeurs du formulaire de connexion
+document.addEventListener('DOMContentLoaded', function() {
+  function handleLogin() {
+    const loginForm = document.querySelector('#login_Form');
     const emailInput = document.querySelector('#email');
     const passwordInput = document.querySelector('#password');
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    const loginLink = document.querySelector('.login');
 
-    // Envoyer la demande de connexion
-    fetch('http://localhost:5678/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    })
-    .then((response) => {
-      if (response.ok) {
-        // Connexion réussie, stocker le token et mettre à jour le texte du lien
-        response.json().then((data) => {
-          window.sessionStorage.setItem('token', data.token);
-          loginLink.textContent = 'Logout';
-          // Rediriger vers la page d'accueil
-          window.location.href = 'index.html';
+    loginForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      try {
+        const response = await fetch('http://localhost:5678/api/users/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password
+          })
         });
-      } else {
-        // Connexion échouée, afficher un message d'erreur
-        alert('Identifiants incorrects');
-      }
-    })
-    .catch((error) => {
-      console.log('Une erreur est survenue lors de la connexion:', error);
-    });
-  });
-}
 
-handleLogin();
+        if (response.ok) {
+          const data = await response.json();
+          window.sessionStorage.setItem('token', data.token);
+          loginForm.reset();
+          window.location.href = 'index.html';
+
+        } else {
+          alert('Identifiants incorrects');
+        }
+      } catch (error) {
+        alert('Une erreur est survenue lors de la connexion');
+        console.error(error);
+      }
+    });
+  }
+
+  handleLogin();
+});

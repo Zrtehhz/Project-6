@@ -66,3 +66,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+
+//Partie texte Login => Logout, Si token affiche Logout et enlève les filtres si non, Affiche Login et les filtres.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const loginLink = document.querySelector('.login1');
+  const logoutLink = document.querySelector('.logout');
+  const editModeLink = document.createElement('a');
+  const projectFilters = document.querySelector('#filtres');
+
+  const token = window.sessionStorage.getItem('token');
+
+  if (token) {
+    loginLink.style.display = 'none';
+    logoutLink.style.display = 'inline';
+    projectFilters.style.display = 'none';
+
+    logoutLink.addEventListener('click', function() {
+      window.sessionStorage.removeItem('token');
+      loginLink.style.display = 'inline';
+      logoutLink.style.display = 'none';
+      projectFilters.style.display = 'flex';
+      projectFilters.style.justifyContent = 'center';
+      projectFilters.style.gap = '10px';
+    });
+
+    editModeLink.textContent = 'Mode Édition';
+    editModeLink.href = '#';
+    editModeLink.classList.add('edit-mode');
+    editModeLink.style.display = 'inline';
+
+    document.querySelector('nav ul').appendChild(editModeLink);
+  } else {
+    loginLink.style.display = 'inline';
+    logoutLink.style.display = 'none';
+    projectFilters.style.display = 'flex';
+  }
+});
