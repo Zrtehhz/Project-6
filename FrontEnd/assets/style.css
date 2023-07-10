@@ -238,3 +238,58 @@ footer nav ul {
 	text-decoration: none;
 	list-style: none;
 }
+
+.edition {
+	display: flex;
+	background-color: #000;
+	padding: 10px;
+    justify-content: center;
+    gap: 15px;
+	width: 100%;
+
+}
+
+.edition i {
+	font-size: 25px;
+	display: block;
+    color: white;
+    padding-top: 8px;
+}
+
+
+.edition_mode {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-family: Work Sans;
+	text-decoration: none;
+	list-style: none;
+    font-size: 17px;
+	color: white;
+}
+
+.changement {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	text-decoration: none;
+	list-style: none;
+	padding: 15px;
+	border: none;
+	font-family: Work Sans;
+}
+
+
+
+.modifier {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+.modifier h2 {
+	padding-top: 25px;
+}
