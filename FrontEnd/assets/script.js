@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectFilters = document.querySelector('#filtres');
   const editionSection = document.querySelector('.edition');
   const modificationSpan = document.querySelector('.modification');
-  const penIcon = document.querySelector('.fa-pen-to-square'); // Sélectionnez la balise i avec la classe "fa-pen-to-square"
+  const penIcon = document.getElementById('icone'); // Sélectionnez la balise i avec la classe "fa-pen-to-square"
+
 
   const token = window.sessionStorage.getItem('token');
 
@@ -86,6 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
     editionSection.style.display = 'flex';
     modificationSpan.style.display = 'flex';
     penIcon.style.display = 'inline'; // Affichez la balise i lorsque l'utilisateur est connecté
+    span.style.display = 'inline';
+    btn.style.display = 'inline';
+    modal.style.display = 'inline';
 
     logoutLink.addEventListener('click', function() {
       window.sessionStorage.removeItem('token');
@@ -97,6 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
       editionSection.style.display = 'none';
       modificationSpan.style.display = 'none';
       penIcon.style.display = 'none'; // Masquez la balise i lors de la déconnexion de l'utilisateur
+      span.style.display = 'none';
+      btn.style.display = 'none';
+      modal.style.display = 'none';
+
+
     });
 
     document.querySelector('nav ul').appendChild(editModeLink);
@@ -107,5 +116,30 @@ document.addEventListener('DOMContentLoaded', function() {
     editionSection.style.display = 'none';
     modificationSpan.style.display = 'none';
     penIcon.style.display = 'none'; // Masquez la balise i lorsque l'utilisateur n'est pas connecté
+    span.style.display = 'none';
+    btn.style.display = 'none';
+    modal.style.display = 'none';
+
+
   }
 });
+
+//Modale
+
+
+let modal = document.getElementById('MaModale');
+let btn = document.getElementById('Modifie');
+let span = document.getElementsByClassName('close')[0];
+
+
+btn.onclick = function() {
+  modal.style.display = 'block';
+}
+
+span.onclick = function() {
+  modal.style.display = 'none';
+}
+
+window.onclick = function() {
+  modal.style.display = 'none';
+}
