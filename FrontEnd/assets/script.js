@@ -117,4 +117,32 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //Modale
+const openModalBtn = document.getElementById('Modifie');
+const modalOverlay = document.getElementById('modalOverlay');
+const closeModalBtn = document.querySelector('.btn-close');
+const addBtn = document.querySelector('.add');
+const removeBtn = document.querySelector('.remove');
 
+// Ouvrir la modale lorsque l'on clique sur le bouton "Ouvrir la modale"
+openModalBtn.addEventListener('click', () => {
+  modalOverlay.style.display = 'block';
+});
+
+// Fermer la modale lorsque l'on clique sur la croix
+closeModalBtn.addEventListener('click', () => {
+  closeModal();
+});
+
+// Fermer la modale lorsque l'on clique en dehors de la modale
+modalOverlay.addEventListener('click', (event) => {
+  if (event.target === modalOverlay) {
+    closeModal();
+  }
+});
+
+
+
+// Fonction pour fermer la modale
+function closeModal() {
+  modalOverlay.style.display = 'none';
+}
