@@ -57,27 +57,45 @@
 				<button href="#" class="modification" id="Modifie">Modifier</button>
 				<div class="modal-overlay" id="modalOverlay">
 					<div class="modal">
-					  <div class="flex">
-						<!-- Icône flèche left -->
-						<i class="fa-solid fa-arrow-left btn-return"></i>
-						<!-- Titre Galerie photo -->
-						<h3>Galerie photo</h3>
-					  </div>
-					  <hr>
-					  <div class="categories">
-						<!-- Fetch de vos catégories (peut être rempli avec JavaScript) -->
-					  </div>
-					  <hr>
-					  <!-- Bouton ajouter une photo -->
-					  <button class="add">Ajouter une photo</button>
-					  <!-- Bouton supprimer la galerie -->
-					  <button class="remove">Supprimer la galerie</button>
-					  <!-- Icône poubelle pour supprimer l'image de la modale + de la catégorie -->
-					  <i class="fa-solid fa-trash"></i>
-					  <!-- Croix pour fermer la modale -->
-					  <button class="btn-close">&times;</button>
+						<div class="flex">
+							<i class="fa-solid fa-arrow-left btn-return"></i>
+							<h3>Galerie photo</h3>
+						</div>
+						<div class="categories">
+							<!-- Ici fetch à faire -->
+						</div>
+						<hr>
+						<button class="add">Ajouter une photo</button>
+						<button class="remove">Supprimer la galerie</button>
+						<button class="btn-close">&times;</button>
 					</div>
-				  </div>
+
+					<div class="modal-overlay" id="modalAddPhoto">
+						<div class="modal">
+							<div class="flex">
+								<i class="fa-solid fa-arrow-left btn-return"></i>
+								<button class="btn-close">&times;</button>
+
+								<h3>Ajout photo</h3>
+							</div>
+							<input type="file" id="photoInput" accept="image/*">
+							<div class="image-container">
+								<img id="previewImage" src="" alt="Aperçu de la photo">
+							</div>
+
+							<input class="PhotoCategory" type="text">
+							<select class="PhotoCategory" id="selectCategorie">
+								<option value="0"></option>
+								<option value="1">Appart</option>
+								<option value="2">Objet</option>
+								<option value="3">Hôtel & Restaurant</option>
+							</select>
+							<hr>
+							<!-- Bouton Valider -->
+							<button class="validate">Valider</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="project" id="filtres">
 				<!-- 			<button  href="#" id="tous">Tous</button>

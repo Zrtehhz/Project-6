@@ -1,7 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -378,9 +375,7 @@ footer nav ul {
 	margin: 0;
   }
   
-  .categories {
-	/* Styles pour les catégories si nécessaire */
-  }
+ 
   
   hr {
 	background-color: #fff;
@@ -412,5 +407,51 @@ footer nav ul {
   .remove {
 	background-color: #fff;
 	color: #ed0000;
+  }
+  
+
+  .validate {
+    background-color: #089214;
+    padding: 10px;
+    border: none;
+    width: 25%;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+    margin-left: auto;
+    color: white;
+    margin-right: auto;
+    font-weight: 600;
+  }
+
+  .PhotoCategory {
+	display: flex;
+	flex-direction: column;
+	border: none;
+	box-shadow: 0px 4px 14px 0px #00000032;
+	padding: 15px;
+	width: 180px;
+	margin-top: 15px;
+
+
+}
+
+.image-container {
+	position: relative;
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+  }
+  
+  #previewImage {
+	object-fit: cover;
+	height: 100%;
+	max-width: 100%;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	display: none; /* Masquer l'image par défaut */
   }
   
