@@ -226,7 +226,6 @@ footer nav ul {
 	color: #000;
 	text-decoration: none;
 	list-style: none;
-	font-weight: 600;
 
 }
 
@@ -300,12 +299,14 @@ footer nav ul {
 	text-decoration: none;
 	color: #000;
 	border: none;
-	font-weight: 600;
+	font-weight: 200;
 	background-color: white;
 }
 
 #icone {
 	display: none;
+	font-weight: 100;
+	margin-left: 15px;
 }
 
   .close {
@@ -336,7 +337,7 @@ footer nav ul {
   
   .modal {
 	width: 630px; /* Largeur de la modale */
-	height: 731px; /* Hauteur de la modale */
+	height: 670px; /* Hauteur de la modale */
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 20px;
@@ -373,6 +374,16 @@ footer nav ul {
   h3 {
 	font-size: 18px;
 	margin: 0;
+	text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+	font-family: Work Sans;
+	font-weight: 400;
+    margin-top: 15px;
+	margin-bottom: 50px;
   }
   
  
@@ -382,6 +393,11 @@ footer nav ul {
 	padding: 0;
 	margin: 10px 0;
 	border: none;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	margin-left: auto;
+    margin-right: auto;
 	border-top: 1px solid #ccc;
   }
   
@@ -398,20 +414,36 @@ footer nav ul {
 	border-radius: 5px;
 	cursor: pointer;
   }
+
+  .option {
+	display: flex;
+	flex-direction: column;
+
+ 
+}
   
   .add {
-	background-color: #089214;
+	background-color: #1D6154;
 	color: #fff;
+	border-radius: 15px;
+	font-family: syne;
+	width: 237px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+
   }
   
   .remove {
 	background-color: #fff;
-	color: #ed0000;
+	color: #D65353;
+
+
   }
   
 
   .validate {
-    background-color: #089214;
+    background-color: #1D6154;
     padding: 10px;
     border: none;
     width: 25%;
@@ -426,16 +458,27 @@ footer nav ul {
     font-weight: 600;
   }
 
-  .PhotoCategory {
+  .selectChoice {
+    width: 100%;
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+    box-shadow: 0px 4px 14px 0px #00000017;
+    margin-left: auto;
+    justify-content: center;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
+}
+
+.PhotoCategory {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5px; 
+	border: none;
 	display: flex;
 	flex-direction: column;
-	border: none;
-	box-shadow: 0px 4px 14px 0px #00000032;
-	padding: 15px;
-	width: 180px;
 	margin-top: 15px;
-
-
 }
 
 .image-container {
@@ -452,6 +495,24 @@ footer nav ul {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	display: none; /* Masquer l'image par défaut */
+	display: none; 
   }
   
+
+#photoInput {
+    display: none;
+}
+
+.custom-file-input-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.custom-file-input-label:hover {
+    background-color: #2980b9;
+}
+

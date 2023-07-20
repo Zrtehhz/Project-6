@@ -58,38 +58,40 @@
 				<div class="modal-overlay" id="modalOverlay">
 					<div class="modal">
 						<div class="flex">
-							<i class="fa-solid fa-arrow-left btn-return"></i>
 							<h3>Galerie photo</h3>
 						</div>
 						<div class="categories">
 							<!-- Ici fetch à faire -->
 						</div>
 						<hr>
-						<button class="add">Ajouter une photo</button>
-						<button class="remove">Supprimer la galerie</button>
+						<div class="option">
+							<button class="add">Ajouter une photo</button>
+							<button class="remove">Supprimer la galerie</button>
+						</div>
+						
 						<button class="btn-close">&times;</button>
 					</div>
 
 					<div class="modal-overlay" id="modalAddPhoto">
 						<div class="modal">
 							<div class="flex">
-								<i class="fa-solid fa-arrow-left btn-return"></i>
-								<button class="btn-close">&times;</button>
+									<i class="fas fa-arrow-left btn-return"></i> 
+								  	<button class="btn-close">&times;</button>
 
 								<h3>Ajout photo</h3>
 							</div>
-							<input type="file" id="photoInput" accept="image/*">
+							<label for="photoInput" class="custom-file-input-label">Ajouter une photo</label>
+							<input type="file" id="photoInput" accept="image/*" placeholder="Ajouter une photo">
 							<div class="image-container">
 								<img id="previewImage" src="" alt="Aperçu de la photo">
 							</div>
-
-							<input class="PhotoCategory" type="text">
-							<select class="PhotoCategory" id="selectCategorie">
-								<option value="0"></option>
-								<option value="1">Appart</option>
-								<option value="2">Objet</option>
-								<option value="3">Hôtel & Restaurant</option>
-							</select>
+								<input class="PhotoCategory" type="text">
+								<select class="PhotoCategory" id="selectCategorie">
+									<option value="0"></option>
+									<option value="1">Appart</option>
+									<option value="2">Objet</option>
+									<option value="3">Hôtel & Restaurant</option>
+								</select>
 							<hr>
 							<!-- Bouton Valider -->
 							<button class="validate">Valider</button>

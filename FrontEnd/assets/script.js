@@ -185,7 +185,7 @@ closeModalBtn1.addEventListener('click', () => {
   // Fermer la modale "Ajout photo" lorsqu'on clique en dehors de celle-ci
   modalOverlay.addEventListener('click', function (event) {
     if (event.target === modalOverlay) {
-      closeAddPhotoModal();
+      closeModal();
     }
   });
 });
