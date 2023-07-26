@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
+var url = 'http://localhost:5678/api/categories';
 
 const fetchData = async (url) => {
   try {
