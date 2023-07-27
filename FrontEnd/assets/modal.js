@@ -23,42 +23,45 @@ modalOverlay.addEventListener('click', (event) => {
 });
 
 // Fonction pour afficher les images
+const apiCall = async () => {
+  await fetch('http://localhost:5678/api/works')
+    .then((response) => response.json())
+    .then((data) => editGallery(data)); // Utilisez directement "data" ici au lieu de "apiData"
 
-const apiCall = async() => {
-  await fetch('http://localhost:5678/works')
-  .then((response) => response.json())
-  .then((data) => (apiData = data))
+  function editGallery(apiData) {
+    const divGallery = document.querySelector('.gallery-modal'); // Utilisez un point avant "gallery-modal"
 
-  function editGallery(apiData){
-    apiData.forEach(element => {
-      const divGallery = document.querySelector('gallery-modal');
+    // Assurez-vous que la galerie existe avant d'ajouter les éléments
+    if (!divGallery) {
+      console.error("L'élément avec la classe 'gallery-modal' n'a pas été trouvé.");
+      return;
+    }
 
+    apiData.forEach((element) => {
       const jimElement = document.createElement('figure');
-
       const imgElement = document.createElement('img');
-      imgElement.src= element.imageUrl;
+      imgElement.src = element.imageUrl;
       imgElement.alt = element.title;
 
-      deleteFigure = document.createElement('button');
+      const deleteFigure = document.createElement('button'); // Déclarez deleteFigure avec "const"
       deleteFigure.setAttribute('data', element.id);
       deleteFigure.innerText = 'supp';
-      deleteFigure.classList.add("delete");
+      deleteFigure.classList.add('delete');
 
       const captionElement = document.createElement('figcaption');
       captionElement.innerText = 'éditer';
 
-      divGallery.appendChild(jimElement);
       jimElement.appendChild(imgElement);
       jimElement.appendChild(captionElement);
       jimElement.appendChild(deleteFigure);
+
+      divGallery.appendChild(jimElement);
     });
-  };
-
-  editGallery(apiData);
-
-}
+  }
+};
 
 apiCall();
+
 
 
 // Fonction pour supprimer une image
@@ -77,14 +80,38 @@ function deleteImage() {
     
     })
   })
-
-
 }
+
+deleteImage();
 
 // Fonction pour fermer la modale
 function closeModal() {
   modalOverlay.style.display = 'none';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Modale 2 Ajout Photo
 document.addEventListener('DOMContentLoaded', function () {
@@ -162,10 +189,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Appeler la fonction pour afficher les images au chargement de la page
-document.addEventListener('DOMContentLoaded', function () {
-  displayImages();
-});
 
 // Récupérer les éléments des deux modales
 const modalOver = document.getElementById('modalOverlay');
@@ -200,7 +223,3 @@ function photoInput() {
 
 
 
-// Appeler la fonction pour afficher les images au chargement de la page
-document.addEventListener('DOMContentLoaded', function () {
-  displayImages();
-});

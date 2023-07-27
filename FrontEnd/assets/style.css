@@ -593,3 +593,20 @@ hr {
 	margin-right: 10px;
 	margin-bottom: 10px;
 }
+
+
+
+.gallery-modal {
+	display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.gallery-modal figure img {
+ width: 72px;
+}
+
+.gallery-modal figure {
+	width: 100%;
+}
