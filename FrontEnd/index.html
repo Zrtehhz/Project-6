@@ -79,8 +79,11 @@
 
 								<h3>Ajout photo</h3>
 							</div>
-							<label for="photoInput" class="custom-file-input-label">Ajouter une photo</label>
+							
 							<input type="file" id="photoInput" accept="image/*" placeholder="Ajouter une photo">
+							<label for="photoInput" class="custom-file-input-label"></label>
+							<a href="#" onclick="photoInput()" class="photoP">+ Ajouter une photo</a>
+							<a href="#" onclick="photoInput()" class="textP">jpg, png : 4mo max</a>
 							<div class="image-container">
 								<img id="previewImage" src="" alt="Aperçu de la photo">
 							</div>

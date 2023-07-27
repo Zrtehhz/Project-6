@@ -333,11 +333,11 @@ footer nav ul {
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.7);
 	z-index: 100;
-  }
-  
-  .modal {
-	width: 630px; /* Largeur de la modale */
-	height: 670px; /* Hauteur de la modale */
+}
+
+.modal {
+	width: 630px;
+	height: 670px;
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 20px;
@@ -346,9 +346,9 @@ footer nav ul {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-  }
-  
-  .btn-close {
+}
+
+.btn-close {
 	position: absolute;
 	top: 10px;
 	right: 10px;
@@ -356,14 +356,15 @@ footer nav ul {
 	border: none;
 	font-size: 20px;
 	cursor: pointer;
-  }
-  
-  .flex {
+}
+
+.flex {
 	display: flex;
 	align-items: center;
-  }
-  
-  .btn-return {
+	margin-top: 35px;
+}
+
+.btn-return {
 	position: absolute;
 	top: 20px;
 	left: 10px;
@@ -371,26 +372,25 @@ footer nav ul {
 	border: none;
 	font-size: 20px;
 	cursor: pointer;
-  }
-  
-  h3 {
+}
+
+h3 {
 	font-size: 18px;
 	margin: 0;
 	text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
 	font-family: Work Sans;
 	font-weight: 400;
-    margin-top: 15px;
+	font-size: 25px;
+	margin-top: 15px;
 	margin-bottom: 50px;
-  }
-  
- 
-  
-  hr {
+}
+
+hr {
 	background-color: #fff;
 	padding: 0;
 	margin: 10px 0;
@@ -399,33 +399,30 @@ footer nav ul {
 	display: flex;
 	justify-content: center;
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 	border-top: 1px solid #ccc;
-	margin-top: 25px;
-  }
-  
-  .buttonAddRemove {
+}
+
+.buttonAddRemove {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-  }
-  
-  .add,
-  .remove {
+}
+
+.add,
+.remove {
 	padding: 10px 15px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-  }
+}
 
-  .option {
+.option {
 	display: flex;
 	flex-direction: column;
-
- 
 }
-  
-  .add {
+
+.add {
 	background-color: #1D6154;
 	color: #fff;
 	border-radius: 15px;
@@ -434,145 +431,165 @@ footer nav ul {
 	text-align: center;
 	margin-right: auto;
 	margin-left: auto;
+}
 
-  }
-  
-  .remove {
+.remove {
 	background-color: #fff;
 	color: #D65353;
+}
 
+.validate {
+	padding: 10px;
+	border: none;
+	width: 25%;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	border-radius: 25px;
+	margin-left: auto;
+	color: white;
+	margin-right: auto;
+	font-weight: 600;
+}
 
-  }
-  
-
-  .validate {
-    background-color: #1D6154;
-    padding: 10px;
-    border: none;
-    width: 25%;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    border-radius: 25px;
-    margin-left: auto;
-    color: white;
-    margin-right: auto;
-    font-weight: 600;
-  }
-
-  .selectChoice {
-    width: 100%;
-    display: flex;
-    margin-top: 5px;
-    flex-direction: column;
-    box-shadow: 0px 4px 14px 0px #00000017;
-    margin-left: auto;
-    justify-content: center;
-    margin-right: auto;
-    text-align: center;
-    align-items: center;
+.selectChoice {
+	width: 100%;
+	display: flex;
+	margin-top: 5px;
+	flex-direction: column;
+	box-shadow: 0px 4px 14px 0px #00000017;
+	margin-left: auto;
+	justify-content: center;
+	margin-right: auto;
+	text-align: center;
+	align-items: center;
 }
 
 .PhotoCategory {
-    width: 420px;
-    box-sizing: border-box;
-    padding: 15px; 
+	width: 420px;
+	box-sizing: border-box;
+	padding: 15px;
 	border: none;
 	display: flex;
 	flex-direction: column;
-	background-color: red;
+	background-color: rgb(255, 255, 255);
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 35px;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-    outline:none;
-
+	outline: none;
 }
 
 .image-container {
-	position: relative;
-	width: 300px;
-	height: 280px;
-	overflow: hidden;
-  }
-  
-  #previewImage {
+    position: absolute;
+    width: 186px;
+    height: 280px;
+    overflow: hidden;
+}
+
+#previewImage {
 	object-fit: cover;
 	height: 100%;
 	max-width: 100%;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	display: none; 
-  }
-  
+	display: none;
+}
 
 #photoInput {
-    display: none;
+	display: none;
 }
 
 .custom-file-input-label {
+	padding-left: 144px;
+    padding-right: 144px;
+    padding-top: 164px;
+	align-items: center;
+	text-align: center;
 	display: flex;
-    padding: 10px 20px;
-    text-align: center;
-    background-color: #3498db;
-    color: #fff;
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-
-}
-
-.custom-file-input-label:hover {
-    background-color: #2980b9;
+	background: rgba(232, 241, 246, 1);
+	border-radius: 25px;
+	cursor: pointer;
+	font-weight: bold;
+		cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
 }
 
 
+.photoP {
+	align-items: center;
+	position: absolute;
+	top: 230px;
+	right: 250px;
+	background: rgba(203, 214, 220, 1);
+	color:rgba(48, 102, 133, 1);
+	padding: 15px;
+	font-weight: 500;
+	font-size: 16px;
+	font-family: work sans;
+	border-radius: 25px;
+	text-decoration: none;
+	list-style: none;
+}
+.textP {
+	align-items: center;
+	position: absolute;
+	top: 270px;
+	right: 290px;
+	color:rgb(0, 0, 0);
+	padding: 15px;
+	font-weight: 400;
+	font-size: 10px;
+	font-family: work sans;
+	border-radius: 25px;
+	text-decoration: none;
+	list-style: none;
+}
 
 
 
-  
-  .image-item {
+.image-item {
 	display: flex;
 	flex-direction: row;
-	width: 76.86px; 
-	height: 102.57px; 
-	margin: 5px; 
+	width: 60%;
+	height: 112.57px;
+	margin: 5px;
 	position: relative;
-	overflow: hidden;
-  }
-  
-  .image-item img {
+}
+
+.image-item img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-  }
-  
-  .delete-icon {
+}
+
+.delete-icon {
 	position: absolute;
 	top: 5px;
-	right: 5px;
-	color: #ffffff; 
+	right: 15px;
+	color: #ffffff;
 	background-color: #000;
-	font-size: 15px;
+	font-size: 25px;
 	cursor: pointer;
-  }
-  
+}
+
 .modal .categories {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-  }
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* 3 images par ligne */
+	grid-gap: 5px; /* Espacement entre les images */
+	width: 100%;
+	height: 70%;
+}
   
-  .modal .categories img {
+
+.modal .categories img {
 	margin-right: 10px;
 	margin-bottom: 10px;
-  }
-  
-  
-  
+}

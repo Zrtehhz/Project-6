@@ -1,38 +1,42 @@
-
-
-//Modale
+// Modale
 const openModalBtn = document.getElementById('Modifie');
 const modalOverlay = document.getElementById('modalOverlay');
 const closeModalBtn = document.querySelector('.btn-close');
 const addBtn = document.querySelector('.add');
 const removeBtn = document.querySelector('.remove');
 
-// Ouvrir la modale lorsque l'on clique sur le bouton "Modifier"
+// Ouvrir la modale lorsque je clique sur le bouton "Modifier"
 openModalBtn.addEventListener('click', () => {
   modalOverlay.style.display = 'block';
 });
 
-// Fermer la modale lorsque l'on clique sur la croix
+// Fermer la modale lorsque je clique sur la croix
 closeModalBtn.addEventListener('click', () => {
   closeModal();
 });
 
-// Fermer la modale lorsque l'on clique en dehors de la modale
+// Fermer la modale lorsque je clique en dehors de la modale
 modalOverlay.addEventListener('click', (event) => {
   if (event.target === modalOverlay) {
     closeModal();
   }
 });
 
+// Fonction pour afficher les images
 function displayImages() {
+  // URL de l'API pour récupérer les images
   const imagesURL = 'http://localhost:5678/api/works';
 
+  // Appeler l'API pour récupérer les images
   fetch(imagesURL)
     .then((response) => response.json())
     .then((data) => {
+      // Vérifier si les données sont sous forme de tableau
       if (Array.isArray(data)) {
+        // Récupérer le conteneur des catégories
         const categoriesContainer = document.querySelector('.categories');
-        categoriesContainer.innerHTML = ''; // Effacer le contenu actuel avant d'ajouter les nouvelles images
+        // Effacer le contenu actuel avant d'ajouter les nouvelles images
+        categoriesContainer.innerHTML = '';
 
         // Regrouper les images par catégorie
         const imagesByCategory = {};
@@ -57,10 +61,12 @@ function displayImages() {
             // Créer un élément image pour chaque image
             const imageElement = document.createElement('img');
             imageElement.src = image.imageUrl;
+            imageElement.setAttribute('data-id', image.id); // Ajouter l'attribut data-id avec la valeur de l'ID de l'image
+            imageElement.setAttribute('data-category-id', categoryId);
 
             // Créer un élément icône de poubelle
             const deleteIcon = document.createElement('i');
-            deleteIcon.className = 'fas fa-trash delete-icon';
+            deleteIcon.className = 'fas fa-trash-can delete-icon';
             deleteIcon.dataset.id = image.id; // Ajouter l'attribut data-id
 
             deleteIcon.addEventListener('click', () => {
@@ -91,7 +97,10 @@ function displayImages() {
 // Fonction pour supprimer une image
 function deleteImage(id) {
   const deleteURL = `http://localhost:5678/works/${id}`;
+  const imageDiv = document.querySelector(`[data-id="${id}"]`);
+  const categoryId = imageDiv.getAttribute('data-category-id');
 
+  // Appeler l'API pour supprimer l'image
   fetch(deleteURL, { method: 'DELETE' })
     .then((response) => response.json())
     .then((data) => {
@@ -104,14 +113,12 @@ function deleteImage(id) {
     });
 }
 
-
 // Fonction pour fermer la modale
 function closeModal() {
   modalOverlay.style.display = 'none';
 }
 
-
-//Modale 2 Ajout Photo
+// Modale 2 Ajout Photo
 document.addEventListener('DOMContentLoaded', function () {
   const modalOverlay = document.getElementById('modalOverlay');
   const modalAddPhoto = document.getElementById('modalAddPhoto');
@@ -132,23 +139,24 @@ document.addEventListener('DOMContentLoaded', function () {
     modalAddPhoto.style.display = 'none';
   }
 
-  // Fermer la modale lorsque l'on clique sur la croix
-closeModalBtn1.addEventListener('click', () => {
-  closeModal();
-});
+  // Fermer la modale lorsque je clique sur la croix
+  closeModalBtn1.addEventListener('click', () => {
+    closeModal();
+  });
 
+  // Fonction pour vérifier les saisies dans les champs
+  function checkInputs() {
+    const titreValue = inputTitre.value.trim();
+    const categorieValue = selectCategorie.value;
 
-function checkInputs() {
-  const titreValue = inputTitre.value.trim();
-  const categorieValue = selectCategorie.value;
-
-  if (titreValue === '' || categorieValue === '') {
-    alert('Veuillez remplir tous les champs.');
-    btnValider.disabled = true;
-  } else {
-    btnValider.disabled = false;
+    if (titreValue === '' || categorieValue === '') {
+      alert('Veuillez remplir tous les champs.');
+      btnValider.disabled = true;
+    } else {
+      btnValider.disabled = false;
+    }
   }
-}
+
   // Événements pour ouvrir et fermer la modale "Ajout photo"
   btnAddPhoto.addEventListener('click', openAddPhotoModal);
   btnCloseAddPhoto.addEventListener('click', closeAddPhotoModal);
@@ -165,20 +173,16 @@ function checkInputs() {
   });
 });
 
-
-
-
-//Display des images dans le input type file
-
-document.addEventListener('DOMContentLoaded', function() {
+// Affichage des images dans l'input de type file
+document.addEventListener('DOMContentLoaded', function () {
   const photoInput = document.getElementById('photoInput');
   const previewImage = document.getElementById('previewImage');
 
-  photoInput.addEventListener('change', function() {
+  photoInput.addEventListener('change', function () {
     const file = photoInput.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         previewImage.src = reader.result;
         previewImage.style.display = 'block'; // Afficher l'image sélectionnée
       };
@@ -189,7 +193,53 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
 // Appeler la fonction pour afficher les images au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   displayImages();
 });
+
+// Récupérer les éléments des deux modales
+const modalOver = document.getElementById('modalOverlay');
+const modalAddPhoto = document.getElementById('modalAddPhoto');
+
+// Récupérer le bouton "Retour" dans la modale d'ajout de photo
+const btnReturnAddPhoto = modalAddPhoto.querySelector('.btn-return');
+
+// Ouvrir la modale d'ajout de photo lorsque l'on clique sur le bouton "Ajouter une photo"
+// Ouvrir la modale d'ajout de photo lorsque l'on clique sur le bouton "Ajouter une photo"
+const adderBtn = document.querySelector('.add');
+adderBtn.addEventListener('click', (event) => {
+  event.preventDefault(); // Empêcher le comportement par défaut du lien
+  modalAddPhoto.style.display = 'block'; // Afficher la modale d'ajout de photo
+});
+
+
+// Fermer la modale d'ajout de photo lorsque l'on clique sur le bouton "Retour"
+btnReturnAddPhoto.addEventListener('click', () => {
+  modalAddPhoto.style.display = 'none'; // Masquer la modale d'ajout de photo
+  modalOver.style.display = 'block'; // Afficher la modale principale
+});
+
+// Pour que quand je clique sur ma balise A et P ça exécute le input
+function photoInput() {
+  // Récupérer l'input de type file
+  const photoInput = document.getElementById('photoInput');
+
+  // Simuler un clic sur l'input de type file
+  photoInput.click();
+}
+
+// Événement de changement sur l'input de type file
+photoInput.addEventListener('change', () => {
+  // Ici, vous pouvez accéder au fichier sélectionné par l'utilisateur avec photoInput.files[0]
+  // Par exemple, pour afficher le nom du fichier sélectionné :
+  console.log('Fichier sélectionné :', photoInput.files[0].name);
+});
+
+// Appeler la fonction pour afficher les images au chargement de la page
+document.addEventListener('DOMContentLoaded', function () {
+  displayImages();
+});
+
+// ... (votre code existant)
