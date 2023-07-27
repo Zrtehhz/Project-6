@@ -44,7 +44,7 @@ const apiCall = async () => {
     
         // Créer une div pour contenir l'image et l'icône de poubelle
         const imageContainer = document.createElement('div');
-        imageContainer.classList.add('image-container');
+        imageContainer.classList.add('image-contain');
     
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
@@ -76,13 +76,13 @@ function deleteImage() {
     deleteIcon.addEventListener('click', async (e) => {
       e.preventDefault();
 
-      const suppId = deleteIcon.getAttribute('data-id');
+      const id = deleteIcon.getAttribute('data-id');
       const figure = deleteIcon.parentNode;
       const token = localStorage.getItem('token');
 
       // Appeler l'API pour supprimer l'image avec l'ID correspondant
       try {
-        const response = await fetch(`http://localhost:5678/api/works/${suppId}`, {
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -251,3 +251,87 @@ function photoInput() {
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const photoInput = document.getElementById('photoInput');
+  const previewImage = document.getElementById('previewImage');
+  const photoP = document.querySelector('.photoP');
+  const textP = document.querySelector('.textP');
+
+  photoInput.addEventListener('change', function () {
+    const file = photoInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        previewImage.src = reader.result;
+        previewImage.style.display = 'block'; // Afficher l'image sélectionnée
+
+        // Passer les balises <a> et <p> en z-index -1 (derrière l'image)
+        photoP.style.zIndex = -1;
+        textP.style.zIndex = -1;
+        // Mettre l'image au-dessus des balises <a> et <p>
+        previewImage.style.zIndex = 25;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      previewImage.src = '';
+      previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
+
+      // Passer les balises <a> et <p> en z-index 25
+      photoP.style.zIndex = 25;
+      textP.style.zIndex = 25;
+      // Remettre l'image en arrière-plan
+      previewImage.style.zIndex = -1;
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Fonction pour gérer le clic sur le bouton "Valider"
+async function handleValidateClick() {
+  const imageInput = document.getElementById('imageInput');
+  const file = imageInput.files[0];
+
+  if (file) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const response = await AjoutImage(formData);
+      const data = await response.json();
+
+      // Une fois l'image ajoutée, vous pouvez créer l'élément d'image et l'ajouter à votre galerie (.gallery)
+      const imgElement = document.createElement('img');
+      imgElement.src = data.imageUrl; // Suppose que la réponse de l'API inclut l'URL de l'image ajoutée
+      imgElement.alt = data.title; // Suppose que la réponse de l'API inclut le titre de l'image
+
+      const figure = document.createElement('figure');
+      figure.appendChild(imgElement);
+
+      const gallery = document.querySelector('.gallery');
+      gallery.appendChild(figure);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'image :", error);
+    }
+  } else {
+    console.error("Aucune image sélectionnée.");
+  }
+}
+
+// Associer le gestionnaire d'événements au clic sur le bouton "Valider"
+const validateButton = document.querySelector('.validate');
+validateButton.addEventListener('click', handleValidateClick);
