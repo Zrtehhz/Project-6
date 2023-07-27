@@ -364,10 +364,12 @@ footer nav ul {
   }
   
   .btn-return {
-	padding: 5px;
-	background: #eee;
-	border-radius: 50%;
-	margin-right: 10px;
+	position: absolute;
+	top: 20px;
+	left: 10px;
+	background: transparent;
+	border: none;
+	font-size: 20px;
 	cursor: pointer;
   }
   
@@ -530,3 +532,47 @@ footer nav ul {
     background-color: #2980b9;
 }
 
+
+
+
+
+  
+  .image-item {
+	display: flex;
+	flex-direction: row;
+	width: 76.86px; 
+	height: 102.57px; 
+	margin: 5px; 
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .image-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+  }
+  
+  .delete-icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: #ffffff; 
+	background-color: #000;
+	font-size: 15px;
+	cursor: pointer;
+  }
+  
+.modal .categories {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+  }
+  
+  .modal .categories img {
+	margin-right: 10px;
+	margin-bottom: 10px;
+  }
+  
+  
+  
