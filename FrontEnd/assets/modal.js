@@ -23,94 +23,62 @@ modalOverlay.addEventListener('click', (event) => {
 });
 
 // Fonction pour afficher les images
-function displayImages() {
-  // URL de l'API pour récupérer les images
-  const imagesURL = 'http://localhost:5678/api/works';
 
-  // Appeler l'API pour récupérer les images
-  fetch(imagesURL)
-    .then((response) => response.json())
-    .then((data) => {
-      // Vérifier si les données sont sous forme de tableau
-      if (Array.isArray(data)) {
-        // Récupérer le conteneur des catégories
-        const categoriesContainer = document.querySelector('.categories');
-        // Effacer le contenu actuel avant d'ajouter les nouvelles images
-        categoriesContainer.innerHTML = '';
+const apiCall = async() => {
+  await fetch('http://localhost:5678/works')
+  .then((response) => response.json())
+  .then((data) => (apiData = data))
 
-        // Regrouper les images par catégorie
-        const imagesByCategory = {};
-        data.forEach((image) => {
-          if (!imagesByCategory[image.categoryId]) {
-            imagesByCategory[image.categoryId] = [];
-          }
-          imagesByCategory[image.categoryId].push(image);
-        });
+  function editGallery(apiData){
+    apiData.forEach(element => {
+      const divGallery = document.querySelector('gallery-modal');
 
-        // Afficher les images dans chaque catégorie
-        Object.keys(imagesByCategory).forEach((categoryId) => {
-          const categoryImages = imagesByCategory[categoryId];
-          const categoryDiv = document.createElement('div');
-          categoryDiv.className = 'category';
+      const jimElement = document.createElement('figure');
 
-          categoryImages.forEach((image) => {
-            // Créer un élément de div pour chaque image
-            const imageDiv = document.createElement('div');
-            imageDiv.className = 'image-item';
+      const imgElement = document.createElement('img');
+      imgElement.src= element.imageUrl;
+      imgElement.alt = element.title;
 
-            // Créer un élément image pour chaque image
-            const imageElement = document.createElement('img');
-            imageElement.src = image.imageUrl;
-            imageElement.setAttribute('data-id', image.id); // Ajouter l'attribut data-id avec la valeur de l'ID de l'image
-            imageElement.setAttribute('data-category-id', categoryId);
+      deleteFigure = document.createElement('button');
+      deleteFigure.setAttribute('data', element.id);
+      deleteFigure.innerText = 'supp';
+      deleteFigure.classList.add("delete");
 
-            // Créer un élément icône de poubelle
-            const deleteIcon = document.createElement('i');
-            deleteIcon.className = 'fas fa-trash-can delete-icon';
-            deleteIcon.dataset.id = image.id; // Ajouter l'attribut data-id
+      const captionElement = document.createElement('figcaption');
+      captionElement.innerText = 'éditer';
 
-            deleteIcon.addEventListener('click', () => {
-              // Appeler la fonction pour supprimer l'image lorsque l'icône de poubelle est cliquée
-              deleteImage(image.id);
-            });
-
-            // Ajouter l'image et l'icône de poubelle à l'élément d'image
-            imageDiv.appendChild(imageElement);
-            imageDiv.appendChild(deleteIcon);
-
-            // Ajouter l'élément d'image à la div de catégorie
-            categoryDiv.appendChild(imageDiv);
-          });
-
-          // Ajouter la div de catégorie à la div des catégories
-          categoriesContainer.appendChild(categoryDiv);
-        });
-      } else {
-        console.error('Aucune image trouvée ou format de données invalide.');
-      }
-    })
-    .catch((error) => {
-      console.error('Erreur lors de la récupération des images :', error);
+      divGallery.appendChild(jimElement);
+      jimElement.appendChild(imgElement);
+      jimElement.appendChild(captionElement);
+      jimElement.appendChild(deleteFigure);
     });
+  };
+
+  editGallery(apiData);
+
 }
 
-// Fonction pour supprimer une image
-function deleteImage(id) {
-  const deleteURL = `http://localhost:5678/works/${id}`;
-  const imageDiv = document.querySelector(`[data-id="${id}"]`);
-  const categoryId = imageDiv.getAttribute('data-category-id');
+apiCall();
 
-  // Appeler l'API pour supprimer l'image
-  fetch(deleteURL, { method: 'DELETE' })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Image supprimée avec succès:', data);
-      // Mettre à jour les images affichées après suppression
-      displayImages();
+
+// Fonction pour supprimer une image
+function deleteImage() {
+  const suppButtons = document.querySelectorAll('.delete');
+  const suppFigure = document.querySelectorAll('figure');
+
+  suppButtons.forEach((suppButton, index) => {
+    suppButton.addEventListener('click', (e) =>{
+      e.preventDefault();
+      
+      const suppId = suppButton.dataset.id;
+      const figure = suppButton.parentNode;
+      const token = localStorage.getItem('token');
+    
+    
     })
-    .catch((error) => {
-      console.error('Erreur lors de la suppression de l\'image :', error);
-    });
+  })
+
+
 }
 
 // Fonction pour fermer la modale
@@ -230,16 +198,9 @@ function photoInput() {
   photoInput.click();
 }
 
-// Événement de changement sur l'input de type file
-photoInput.addEventListener('change', () => {
-  // Ici, vous pouvez accéder au fichier sélectionné par l'utilisateur avec photoInput.files[0]
-  // Par exemple, pour afficher le nom du fichier sélectionné :
-  console.log('Fichier sélectionné :', photoInput.files[0].name);
-});
+
 
 // Appeler la fonction pour afficher les images au chargement de la page
 document.addEventListener('DOMContentLoaded', function () {
   displayImages();
 });
-
-// ... (votre code existant)
