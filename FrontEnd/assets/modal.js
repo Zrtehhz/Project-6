@@ -197,25 +197,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Affichage des images dans l'input de type file
-document.addEventListener('DOMContentLoaded', function () {
-  const photoInput = document.getElementById('photoInput');
-  const previewImage = document.getElementById('previewImage');
+// Récupérer l'élément de prévisualisation d'image
+const previewImage = document.getElementById('previewImage');
 
-  photoInput.addEventListener('change', function () {
-    const file = photoInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function () {
-        previewImage.src = reader.result;
-        previewImage.style.display = 'block'; // Afficher l'image sélectionnée
-      };
-      reader.readAsDataURL(file);
-    } else {
-      previewImage.src = '';
-      previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
-    }
-  });
+// Récupérer l'input de type file
+const photoInp = document.getElementById('photoInput');
+
+// Afficher l'image sélectionnée dans l'élément de prévisualisation d'image
+photoInp.addEventListener('change', function () {
+  const file = photoInp.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      previewImage.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    previewImage.src = ''; // Effacer l'image si aucun fichier n'est sélectionné
+  }
 });
 
 
