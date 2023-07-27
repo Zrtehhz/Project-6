@@ -24,8 +24,6 @@ modalOverlay.addEventListener('click', (event) => {
   }
 });
 
-
-// Fonction pour afficher les images dans la modale avec une icône de poubelle
 function displayImages() {
   const imagesURL = 'http://localhost:5678/api/works';
 
@@ -63,6 +61,7 @@ function displayImages() {
             // Créer un élément icône de poubelle
             const deleteIcon = document.createElement('i');
             deleteIcon.className = 'fas fa-trash delete-icon';
+            deleteIcon.dataset.id = image.id; // Ajouter l'attribut data-id
 
             deleteIcon.addEventListener('click', () => {
               // Appeler la fonction pour supprimer l'image lorsque l'icône de poubelle est cliquée
@@ -104,8 +103,6 @@ function deleteImage(id) {
       console.error('Erreur lors de la suppression de l\'image :', error);
     });
 }
-
-
 
 
 // Fonction pour fermer la modale
