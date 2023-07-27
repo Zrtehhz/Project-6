@@ -147,191 +147,232 @@ document.addEventListener('DOMContentLoaded', function () {
   const modalOverlay = document.getElementById('modalOverlay');
   const modalAddPhoto = document.getElementById('modalAddPhoto');
   const btnAddPhoto = document.querySelector('.add');
-  const closeModalBtn1 = document.querySelector('.btn-close');
-  const btnCloseAddPhoto = modalAddPhoto.querySelector('.btn-close');
-  const inputTitre = modalAddPhoto.querySelector('input[type="text"]');
-  const selectCategorie = document.getElementById('selectCategorie');
-  const btnValider = modalAddPhoto.querySelector('.validate');
+    const closeModalBtn1 = document.querySelector('.btn-close');
+    const btnCloseAddPhoto = modalAddPhoto.querySelector('.btn-close');
+    const inputTitre = modalAddPhoto.querySelector('input[type="text"]');
+    const selectCategorie = document.getElementById('selectCategorie');
+    const btnValider = modalAddPhoto.querySelector('.validate');
 
-  // Fonction pour ouvrir la modale "Ajout photo"
-  function openAddPhotoModal() {
-    modalAddPhoto.style.display = 'block';
-  }
-
-  // Fonction pour fermer la modale "Ajout photo"
-  function closeAddPhotoModal() {
-    modalAddPhoto.style.display = 'none';
-  }
-
-  // Fermer la modale lorsque je clique sur la croix
-  closeModalBtn1.addEventListener('click', () => {
-    closeModal();
-  });
-
-  // Fonction pour vérifier les saisies dans les champs
-  function checkInputs() {
-    const titreValue = inputTitre.value.trim();
-    const categorieValue = selectCategorie.value;
-
-    if (titreValue === '' || categorieValue === '') {
-      alert('Veuillez remplir tous les champs.');
-      btnValider.disabled = true;
-    } else {
-      btnValider.disabled = false;
+    // Fonction pour ouvrir la modale "Ajout photo"
+    function openAddPhotoModal() {
+      modalAddPhoto.style.display = 'block';
     }
-  }
 
-  // Événements pour ouvrir et fermer la modale "Ajout photo"
-  btnAddPhoto.addEventListener('click', openAddPhotoModal);
-  btnCloseAddPhoto.addEventListener('click', closeAddPhotoModal);
+    // Fonction pour fermer la modale "Ajout photo"
+    function closeAddPhotoModal() {
+      modalAddPhoto.style.display = 'none';
+    }
 
-  // Événements pour vérifier les saisies à chaque changement dans les champs
-  inputTitre.addEventListener('input', checkInputs);
-  selectCategorie.addEventListener('change', checkInputs);
-
-  // Fermer la modale "Ajout photo" lorsqu'on clique en dehors de celle-ci
-  modalOverlay.addEventListener('click', function (event) {
-    if (event.target === modalOverlay) {
+    // Fermer la modale lorsque je clique sur la croix
+    closeModalBtn1.addEventListener('click', () => {
       closeModal();
+    });
+
+    // Fonction pour vérifier les saisies dans les champs
+    function checkInputs() {
+      const titreValue = inputTitre.value.trim();
+      const categorieValue = selectCategorie.value;
+
+      if (titreValue === '' || categorieValue === '') {
+        alert('Veuillez remplir tous les champs.');
+        btnValider.disabled = true;
+      } else {
+        btnValider.disabled = false;
+      }
     }
+
+    // Événements pour ouvrir et fermer la modale "Ajout photo"
+    btnAddPhoto.addEventListener('click', openAddPhotoModal);
+    btnCloseAddPhoto.addEventListener('click', closeAddPhotoModal);
+
+    // Événements pour vérifier les saisies à chaque changement dans les champs
+    inputTitre.addEventListener('input', checkInputs);
+    selectCategorie.addEventListener('change', checkInputs);
+
+    // Fermer la modale "Ajout photo" lorsqu'on clique en dehors de celle-ci
+    modalOverlay.addEventListener('click', function (event) {
+      if (event.target === modalOverlay) {
+        closeModal();
+      }
+    });
   });
-});
 
-// Récupérer l'élément de prévisualisation d'image
-const previewImage = document.getElementById('previewImage');
-
-// Récupérer l'input de type file
-const photoInp = document.getElementById('photoInput');
-
-// Afficher l'image sélectionnée dans l'élément de prévisualisation d'image
-photoInp.addEventListener('change', function () {
-  const file = photoInp.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function () {
-      previewImage.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    previewImage.src = ''; // Effacer l'image si aucun fichier n'est sélectionné
-  }
-});
-
-
-// Récupérer les éléments des deux modales
-const modalOver = document.getElementById('modalOverlay');
-const modalAddPhoto = document.getElementById('modalAddPhoto');
-
-// Récupérer le bouton "Retour" dans la modale d'ajout de photo
-const btnReturnAddPhoto = modalAddPhoto.querySelector('.btn-return');
-
-// Ouvrir la modale d'ajout de photo lorsque l'on clique sur le bouton "Ajouter une photo"
-// Ouvrir la modale d'ajout de photo lorsque l'on clique sur le bouton "Ajouter une photo"
-const adderBtn = document.querySelector('.add');
-adderBtn.addEventListener('click', (event) => {
-  event.preventDefault(); // Empêcher le comportement par défaut du lien
-  modalAddPhoto.style.display = 'block'; // Afficher la modale d'ajout de photo
-});
-
-
-// Fermer la modale d'ajout de photo lorsque l'on clique sur le bouton "Retour"
-btnReturnAddPhoto.addEventListener('click', () => {
-  modalAddPhoto.style.display = 'none'; // Masquer la modale d'ajout de photo
-  modalOver.style.display = 'block'; // Afficher la modale principale
-});
-
-// Pour que quand je clique sur ma balise A et P ça exécute le input
-function photoInput() {
-  // Récupérer l'input de type file
-  const photoInput = document.getElementById('photoInput');
-
-  // Simuler un clic sur l'input de type file
-  photoInput.click();
-}
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const photoInput = document.getElementById('photoInput');
+  // Récupérer l'élément de prévisualisation d'image
   const previewImage = document.getElementById('previewImage');
-  const photoP = document.querySelector('.photoP');
-  const textP = document.querySelector('.textP');
 
-  photoInput.addEventListener('change', function () {
-    const file = photoInput.files[0];
+  // Récupérer l'input de type file
+  const photoInp = document.getElementById('photoInput');
+
+  // Afficher l'image sélectionnée dans l'élément de prévisualisation d'image
+  photoInp.addEventListener('change', function () {
+    const file = photoInp.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function () {
         previewImage.src = reader.result;
-        previewImage.style.display = 'block'; // Afficher l'image sélectionnée
-
-        // Passer les balises <a> et <p> en z-index -1 (derrière l'image)
-        photoP.style.zIndex = -1;
-        textP.style.zIndex = -1;
-        // Mettre l'image au-dessus des balises <a> et <p>
-        previewImage.style.zIndex = 25;
       };
       reader.readAsDataURL(file);
     } else {
-      previewImage.src = '';
-      previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
+      previewImage.src = ''; // Effacer l'image si aucun fichier n'est sélectionné
+    }
+  });
 
-      // Passer les balises <a> et <p> en z-index 25
+
+  // Récupérer les éléments des deux modales
+  const modalOver = document.getElementById('modalOverlay');
+  const modalAddPhoto = document.getElementById('modalAddPhoto');
+
+  // Récupérer le bouton "Retour" dans la modale d'ajout de photo
+  const btnReturnAddPhoto = modalAddPhoto.querySelector('.btn-return');
+
+  // Ouvrir la modale d'ajout de photo lorsque l'on clique sur le bouton "Ajouter une photo"
+  // Ouvrir la modale d'ajout de photo lorsque l'on clique sur le bouton "Ajouter une photo"
+  const adderBtn = document.querySelector('.add');
+  adderBtn.addEventListener('click', (event) => {
+    event.preventDefault(); // Empêcher le comportement par défaut du lien
+    modalAddPhoto.style.display = 'block'; // Afficher la modale d'ajout de photo
+  });
+
+
+  // Fermer la modale d'ajout de photo lorsque l'on clique sur le bouton "Retour"
+  btnReturnAddPhoto.addEventListener('click', () => {
+    modalAddPhoto.style.display = 'none'; // Masquer la modale d'ajout de photo
+    modalOver.style.display = 'block'; // Afficher la modale principale
+  });
+
+  // Pour que quand je clique sur ma balise A et P ça exécute le input
+  function photoInput() {
+    // Récupérer l'input de type file
+    const photoInput = document.getElementById('photoInput');
+
+    // Simuler un clic sur l'input de type file
+    photoInput.click();
+  }
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const photoInput = document.getElementById('photoInput');
+    const previewImage = document.getElementById('previewImage');
+    const photoP = document.querySelector('.photoP');
+    const textP = document.querySelector('.textP');
+
+    photoInput.addEventListener('change', function () {
+      const file = photoInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          previewImage.src = reader.result;
+          previewImage.style.display = 'block'; // Afficher l'image sélectionnée
+
+          // Passer les balises <a> et <p> en z-index -1 (derrière l'image)
+          photoP.style.zIndex = -1;
+          textP.style.zIndex = -1;
+          // Mettre l'image au-dessus des balises <a> et <p>
+          previewImage.style.zIndex = 25;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewImage.src = '';
+        previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
+
+        // Passer les balises <a> et <p> en z-index 25
+        photoP.style.zIndex = 25;
+        textP.style.zIndex = 25;
+        // Remettre l'image en arrière-plan
+        previewImage.style.zIndex = -1;
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+  
+    const photoInput = document.getElementById('photoInput');
+  const previewImage = document.getElementById('previewImage');
+  const photoP = document.querySelector('.photoP');
+  const textP = document.querySelector('.textP');
+  const inputTitre = modalAddPhoto.querySelector('input[type="text"]');
+  const selectCategorie = document.getElementById('selectCategorie');
+  const apiUrl = 'http://localhost:5678/api/works';
+
+  // Fonction pour vérifier le titre de l'image dans l'API
+  async function checkImageTitle(file) {
+    const title = file.name.split('.').slice(0, -1).join('.'); // J'extrait le titre de l'image sans l'extension
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      // Je cherche une correspondance du titre dans l'API
+      const matchingEntry = data.find((entry) => entry.title === title);
+
+      if (matchingEntry) {
+        // Si une correspondance est trouvée, je mets à jour les valeurs des champs
+        inputTitre.value = matchingEntry.title;
+        selectCategorie.value = matchingEntry.category;
+      } else {
+        // Si aucune correspondance n'est trouvée, je réinitialise les valeurs des champs
+        inputTitre.value = '';
+        selectCategorie.value = 0;
+      }
+    } catch (error) {
+      console.error('Erreur lors de la requête API:', error);
+    }
+  }
+
+  // Fonction pour afficher l'image sélectionnée
+  function displaySelectedImage(file) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      previewImage.src = reader.result;
+      previewImage.style.display = 'block'; // J'affiche l'image sélectionnée
+
+      // Je passe les balises <a> et <p> en z-index -1 (derrière l'image)
+      photoP.style.zIndex = -1;
+      textP.style.zIndex = -1;
+      // Je mets l'image au-dessus des balises <a> et <p>
+      previewImage.style.zIndex = 25;
+
+      // Je vérifie le titre de l'image dans l'API
+      checkImageTitle(file);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Récupérer l'input de type file
+  const photoInp = document.getElementById('photoInput');
+
+  // Afficher l'image sélectionnée dans l'élément de prévisualisation d'image et vérifier le titre
+  photoInp.addEventListener('change', function () {
+    const file = photoInp.files[0];
+    if (file) {
+      displaySelectedImage(file);
+    } else {
+      previewImage.src = '';
+      previewImage.style.display = 'none'; // Je masque l'image s'il n'y a pas de sélection de fichier
+
+      // Je passe les balises <a> et <p> en z-index 25
       photoP.style.zIndex = 25;
       textP.style.zIndex = 25;
-      // Remettre l'image en arrière-plan
+      // Je remets l'image en arrière-plan
       previewImage.style.zIndex = -1;
+
+      // Je réinitialise les valeurs des champs
+      inputTitre.value = '';
+      selectCategorie.value = 0;
     }
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Fonction pour gérer le clic sur le bouton "Valider"
-async function handleValidateClick() {
-  const imageInput = document.getElementById('imageInput');
-  const file = imageInput.files[0];
-
-  if (file) {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    try {
-      const response = await AjoutImage(formData);
-      const data = await response.json();
-
-      // Une fois l'image ajoutée, vous pouvez créer l'élément d'image et l'ajouter à votre galerie (.gallery)
-      const imgElement = document.createElement('img');
-      imgElement.src = data.imageUrl; // Suppose que la réponse de l'API inclut l'URL de l'image ajoutée
-      imgElement.alt = data.title; // Suppose que la réponse de l'API inclut le titre de l'image
-
-      const figure = document.createElement('figure');
-      figure.appendChild(imgElement);
-
-      const gallery = document.querySelector('.gallery');
-      gallery.appendChild(figure);
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'image :", error);
-    }
-  } else {
-    console.error("Aucune image sélectionnée.");
-  }
-}
-
-// Associer le gestionnaire d'événements au clic sur le bouton "Valider"
-const validateButton = document.querySelector('.validate');
-validateButton.addEventListener('click', handleValidateClick);
