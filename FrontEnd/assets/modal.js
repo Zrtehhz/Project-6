@@ -28,61 +28,90 @@ const apiCall = async () => {
     .then((response) => response.json())
     .then((data) => editGallery(data)); // Utilisez directement "data" ici au lieu de "apiData"
 
-  function editGallery(apiData) {
-    const divGallery = document.querySelector('.gallery-modal'); // Utilisez un point avant "gallery-modal"
+    function editGallery(apiData) {
+      const divGallery = document.querySelector('.gallery-modal');
+    
+      if (!divGallery) {
+        console.error("L'élément avec la classe 'gallery-modal' n'a pas été trouvé.");
+        return;
+      }
+    
+      apiData.forEach((element) => {
+        const jimElement = document.createElement('figure');
+        const imgElement = document.createElement('img');
+        imgElement.src = element.imageUrl;
+        imgElement.alt = element.title;
+    
+        // Créer une div pour contenir l'image et l'icône de poubelle
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
+    
+        const deleteIcon = document.createElement('i');
+        deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
+        deleteIcon.setAttribute('data-id', element.id); // Stocker l'ID de l'image dans l'attribut data-id
 
-    // Assurez-vous que la galerie existe avant d'ajouter les éléments
-    if (!divGallery) {
-      console.error("L'élément avec la classe 'gallery-modal' n'a pas été trouvé.");
-      return;
+        imageContainer.appendChild(imgElement);
+        imageContainer.appendChild(deleteIcon);
+    
+        jimElement.appendChild(imageContainer);
+    
+        const captionElement = document.createElement('figcaption');
+        captionElement.innerText = 'éditer';
+    
+        jimElement.appendChild(captionElement);
+    
+        divGallery.appendChild(jimElement);
+      });
     }
-
-    apiData.forEach((element) => {
-      const jimElement = document.createElement('figure');
-      const imgElement = document.createElement('img');
-      imgElement.src = element.imageUrl;
-      imgElement.alt = element.title;
-
-      const deleteFigure = document.createElement('button'); // Déclarez deleteFigure avec "const"
-      deleteFigure.setAttribute('data', element.id);
-      deleteFigure.innerText = 'supp';
-      deleteFigure.classList.add('delete');
-
-      const captionElement = document.createElement('figcaption');
-      captionElement.innerText = 'éditer';
-
-      jimElement.appendChild(imgElement);
-      jimElement.appendChild(captionElement);
-      jimElement.appendChild(deleteFigure);
-
-      divGallery.appendChild(jimElement);
-    });
-  }
+    
 };
 
 apiCall();
 
 
-
-// Fonction pour supprimer une image
 function deleteImage() {
-  const suppButtons = document.querySelectorAll('.delete');
-  const suppFigure = document.querySelectorAll('figure');
+  const deleteIcons = document.querySelectorAll('.delete-icon');
 
-  suppButtons.forEach((suppButton, index) => {
-    suppButton.addEventListener('click', (e) =>{
+  deleteIcons.forEach((deleteIcon) => {
+    deleteIcon.addEventListener('click', async (e) => {
       e.preventDefault();
-      
-      const suppId = suppButton.dataset.id;
-      const figure = suppButton.parentNode;
+
+      const suppId = deleteIcon.getAttribute('data-id');
+      const figure = deleteIcon.parentNode;
       const token = localStorage.getItem('token');
-    
-    
-    })
-  })
+
+      // Appeler l'API pour supprimer l'image avec l'ID correspondant
+      try {
+        const response = await fetch(`http://localhost:5678/api/works/${suppId}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("La suppression de l'image a échoué.");
+        }
+
+        // Supprimer l'image de la galerie modale
+        figure.remove();
+
+        // Vous pouvez également mettre à jour la galerie dans votre backend pour refléter la suppression
+      } catch (error) {
+        console.error("Erreur lors de la suppression de l'image :", error);
+      }
+    });
+  });
 }
 
+
+
 deleteImage();
+
+
+
+
+
 
 // Fonction pour fermer la modale
 function closeModal() {
