@@ -174,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const categorieValue = selectCategorie.value;
 
       if (titreValue === '' || categorieValue === '') {
-        alert('Veuillez remplir tous les champs.');
         btnValider.disabled = true;
       } else {
         btnValider.disabled = false;
@@ -295,84 +294,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
-  document.addEventListener('DOMContentLoaded', function () {
-  
-    const photoInput = document.getElementById('photoInput');
-  const previewImage = document.getElementById('previewImage');
-  const photoP = document.querySelector('.photoP');
-  const textP = document.querySelector('.textP');
-  const inputTitre = modalAddPhoto.querySelector('input[type="text"]');
-  const selectCategorie = document.getElementById('selectCategorie');
-  const apiUrl = 'http://localhost:5678/api/works';
-
-  // Fonction pour vérifier le titre de l'image dans l'API
-  async function checkImageTitle(file) {
-    const title = file.name.split('.').slice(0, -1).join('.'); // J'extrait le titre de l'image sans l'extension
-
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-
-      // Je cherche une correspondance du titre dans l'API
-      const matchingEntry = data.find((entry) => entry.title === title);
-
-      if (matchingEntry) {
-        // Si une correspondance est trouvée, je mets à jour les valeurs des champs
-        inputTitre.value = matchingEntry.title;
-        selectCategorie.value = matchingEntry.category;
-      } else {
-        // Si aucune correspondance n'est trouvée, je réinitialise les valeurs des champs
-        inputTitre.value = '';
-        selectCategorie.value = 0;
-      }
-    } catch (error) {
-      console.error('Erreur lors de la requête API:', error);
-    }
-  }
-
-  // Fonction pour afficher l'image sélectionnée
-  function displaySelectedImage(file) {
-    const reader = new FileReader();
-    reader.onload = function () {
-      previewImage.src = reader.result;
-      previewImage.style.display = 'block'; // J'affiche l'image sélectionnée
-
-      // Je passe les balises <a> et <p> en z-index -1 (derrière l'image)
-      photoP.style.zIndex = -1;
-      textP.style.zIndex = -1;
-      // Je mets l'image au-dessus des balises <a> et <p>
-      previewImage.style.zIndex = 25;
-
-      // Je vérifie le titre de l'image dans l'API
-      checkImageTitle(file);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  // Récupérer l'input de type file
-  const photoInp = document.getElementById('photoInput');
-
-  // Afficher l'image sélectionnée dans l'élément de prévisualisation d'image et vérifier le titre
-  photoInp.addEventListener('change', function () {
-    const file = photoInp.files[0];
-    if (file) {
-      displaySelectedImage(file);
-    } else {
-      previewImage.src = '';
-      previewImage.style.display = 'none'; // Je masque l'image s'il n'y a pas de sélection de fichier
-
-      // Je passe les balises <a> et <p> en z-index 25
-      photoP.style.zIndex = 25;
-      textP.style.zIndex = 25;
-      // Je remets l'image en arrière-plan
-      previewImage.style.zIndex = -1;
-
-      // Je réinitialise les valeurs des champs
-      inputTitre.value = '';
-      selectCategorie.value = 0;
-    }
-  });
-});
