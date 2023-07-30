@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   function handleLogin() {
-    const loginForm = document.querySelector('#login_Form');
-    const emailInput = document.querySelector('#email');
-    const passwordInput = document.querySelector('#password');
+    const loginForm = document.getElementById('#login_Form');
+    const emailInput = document.getElementById('#email');
+    const passwordInput = document.getElementById('#password');
     const loginLink = document.querySelector('.login');
 
     loginForm.addEventListener('submit', async function(event) {
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
           alert('Identifiants incorrects');
         }
       } catch (error) {
-        alert('Une erreur est survenue lors de la connexion');
-        console.error(error);
+        console.error('Error:', error);
       }
     });
-  }
+  } // Fermeture de la fonction handleLogin
+  handleLogin(); // Appel de la fonction handleLogin pour configurer l'écouteur d'événements
 
-  handleLogin();
 });
+
 
 
 
