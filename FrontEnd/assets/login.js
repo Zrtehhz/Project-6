@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   function handleLogin() {
-    const loginForm = document.getElementById('#login_Form');
-    const emailInput = document.getElementById('#email');
-    const passwordInput = document.getElementById('#password');
+    const loginForm = document.querySelector('#login_Form');
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
     const loginLink = document.querySelector('.login');
 
     loginForm.addEventListener('submit', async function(event) {

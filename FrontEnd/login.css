@@ -206,7 +206,7 @@ nav li a:hover {
 .label1 {
     display: flex;
     justify-content: center;
-    margin-right: 11%;
+    margin-right: 230px;
     margin-top: 5%;
     padding-bottom: 1%;
 }
@@ -214,7 +214,7 @@ nav li a:hover {
 .label2 {
     display: flex;
     justify-content: center;
-    margin-right: 7%;
+    margin-right: 180px;
     margin-top: 5%;
     padding-bottom: 1%;
 }
@@ -222,7 +222,7 @@ nav li a:hover {
 .input1{
     display: flex;
     justify-content: center;
-    margin-left: 450px;
+    margin-left: 430px;
     padding: 15px;
     width: 250px;
     overflow: hidden;
