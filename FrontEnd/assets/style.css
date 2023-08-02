@@ -453,6 +453,9 @@ hr {
 	margin-right: auto;
 	font-weight: 600;
 }
+.validate:hover {
+	color: #000000;
+}
 
 .selectChoice {
 	width: 100%;
@@ -491,16 +494,19 @@ hr {
 	display: inline-block;
   }
 
+
   /* CSS pour l'image */
-  #previewImage {
-    width: 94%;
-    height: 28.6%;
-    object-fit: contain;
-    position: absolute;
+/* Supprimez ou commentez la ligne display: none; pour afficher l'image */
+#previewImage {
+	width: 94%;
+	height: 28.6%;
+	object-fit: contain;
+	position: absolute;
 	z-index: -1;
-	display: none;
-	    top: 145px;
+	 display: none; 
+	top: 145px;
   }
+  
 
 #photoInput {
 	display: none;
