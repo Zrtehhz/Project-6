@@ -249,10 +249,11 @@ async function showImages() {
       // Créer une div pour contenir l'image et l'icône de poubelle
       const imageContainer = document.createElement('div');
       imageContainer.classList.add('image-contain');
+      imageContainer.dataset.id = element.id; // Utilisation de l'attribut dataset pour stocker l'ID de l'image
+
 
       const deleteIcon = document.createElement('i');
       deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
-      deleteIcon.dataset.id = element.id; // Utilisation de l'attribut dataset pour stocker l'ID de l'image
 
       imageContainer.appendChild(imgElement);
 
@@ -275,42 +276,51 @@ async function showImages() {
 // Fonction pour supprimer une image
 async function deleteImage() {
   const deleteIcons = document.querySelectorAll('.delete-icon');
-
+  console.log('testeee');
   deleteIcons.forEach((deleteIcon) => {
-    deleteIcon.addEventListener('click', async (e) => {
-      e.preventDefault();
+    // Supprimer l'ancien écouteur d'événements s'il existe
+    deleteIcon.removeEventListener('click', onDeleteImage);
 
-      const imageContainer = deleteIcon.closest('.image-contain');
-      const imageId = deleteIcon.getAttribute('data-id');
-      const figure = imageContainer.parentNode;
-      const token = window.sessionStorage.getItem('token');
-
-      // Appeler l'API pour supprimer l'image avec l'ID correspondant
-      try {
-        const response = await fetch(`http://localhost:5678/api/works/${imageId}`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("La suppression de l'image a échoué.");
-        }
-
-        // Supprimer l'image de la galerie modale
-        figure.remove();
-        console.log('pas test');
-
-        // Mettre à jour dynamiquement la galerie après la suppression
-        showImages();
-
-        console.log('test');
-      } catch (error) {
-        console.error("Erreur lors de la suppression de l'image :", error);
-      }
-    });
+    // Ajouter un nouvel écouteur d'événements
+    deleteIcon.addEventListener('click', onDeleteImage);
   });
+}
+
+// Fonction de suppression d'image pour l'écouteur d'événements
+async function onDeleteImage(e) {
+  e.preventDefault();
+
+  const deleteIcon = e.target;
+  const imageContainer = deleteIcon.closest('.image-contain');
+  const id = deleteIcon.getAttribute('data-id');
+  const figure = imageContainer.parentNode;
+  const token = window.sessionStorage.getItem('token');
+
+  // Appeler l'API pour supprimer l'image avec l'ID correspondant
+  try {
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log('hop');
+
+    if (!response.ok) {
+      throw new Error("La suppression de l'image a échoué.");
+    }
+
+    // Supprimer l'image de la galerie modale
+    figure.remove();
+    console.log('pas test');
+
+    // Mettre à jour dynamiquement la galerie après la suppression
+    showImages();
+
+    console.log('test');
+  } catch (error) {
+    console.error("Erreur lors de la suppression de l'image :", error);
+  }
 }
 
 
