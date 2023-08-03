@@ -21,14 +21,6 @@ function closeModal() {
 }
 
 // Appel les fonctions de showImages() et deleteImage()
-showImages();
-deleteImage();
-
-
-
-
-
-
 
 
 
