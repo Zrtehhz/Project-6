@@ -1,3 +1,64 @@
+
+
+
+//Partie texte Login => Logout, Si token affiche Logout et enlève les filtres si non, Affiche Login et les filtres.
+document.addEventListener('DOMContentLoaded', function() {
+  const loginLink = document.querySelector('.login1');
+  const logoutLink = document.querySelector('.logout');
+  const editModeLink = document.createElement('a');
+  const projectFilters = document.querySelector('#filtres');
+  const editionSection = document.querySelector('.edition');
+  const modificationSpan = document.querySelector('.modification');
+  const penIcon = document.getElementById('icone'); // Sélectionnez la balise i avec la classe "fa-pen-to-square"
+
+
+  const token = window.sessionStorage.getItem('token');
+
+  if (token) {
+    loginLink.style.display = 'none';
+    logoutLink.style.display = 'inline';
+    projectFilters.style.display = 'none';
+    editionSection.style.display = 'flex';
+    modificationSpan.style.display = 'flex';
+    penIcon.style.display = 'inline'; // Affichez la balise i lorsque l'utilisateur est connecté
+
+    logoutLink.addEventListener('click', function() {
+      window.sessionStorage.removeItem('token');
+      loginLink.style.display = 'inline';
+      logoutLink.style.display = 'none';
+      projectFilters.style.display = 'flex';
+      projectFilters.style.justifyContent = 'center';
+      projectFilters.style.gap = '10px';
+      editionSection.style.display = 'none';
+      modificationSpan.style.display = 'none';
+      penIcon.style.display = 'none'; // Masquez la balise i lors de la déconnexion de l'utilisateur
+
+
+    });
+
+    document.querySelector('nav ul').appendChild(editModeLink);
+  } else {
+    loginLink.style.display = 'inline';
+    logoutLink.style.display = 'none';
+    projectFilters.style.display = 'flex';
+    editionSection.style.display = 'none';
+    modificationSpan.style.display = 'none';
+    penIcon.style.display = 'none'; // Masquez la balise i lorsque l'utilisateur n'est pas connecté
+  
+
+
+  }
+});
+
+
+
+
+
+
+
+
+
+
 // Ouvrir la modale lorsque je clique sur le bouton "Modifier"
 document.getElementById('Modifie').addEventListener('click', () => {
   document.getElementById('modalOverlay').style.display = 'block';
@@ -19,8 +80,6 @@ document.getElementById('modalOverlay').addEventListener('click', (event) => {
 function closeModal() {
   document.getElementById('modalOverlay').style.display = 'none';
 }
-
-// Appel les fonctions de showImages() et deleteImage()
 
 
 
@@ -141,7 +200,10 @@ document.querySelector('.btn-return').addEventListener('click', () => {
 });
 
 // Fonction pour ajouter une photo
-document.querySelector('.validate').addEventListener('click', async () => {
+document.querySelector('.validate').addEventListener('click', async (event) => {
+
+  event.preventDefault();
+
   const apiUrl = 'http://localhost:5678/api/works';
   const formData = new FormData();
   
@@ -169,10 +231,7 @@ document.querySelector('.validate').addEventListener('click', async () => {
       throw new Error('Erreur lors de l\'ajout de l\'élément à la galerie');
     }
 
-    // Fermer la modale "Ajout photo"
-    document.getElementById('modalAddPhoto').style.display = 'none';
     // Mettre à jour la galerie des images
-    showImages();
   } catch (error) {
     console.log(error.message);
   }
@@ -180,6 +239,7 @@ document.querySelector('.validate').addEventListener('click', async () => {
 
 
 
+showImages();
 
 
 
