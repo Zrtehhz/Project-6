@@ -336,7 +336,6 @@ async function showImages() {
 
     // Attachez l'événement de suppression aux nouvelles icônes de suppression
     deleteImage();
-    e.preventDefault();
   } catch (error) {
     console.error("Erreur lors de l'affichage des images :", error.message);
   }
