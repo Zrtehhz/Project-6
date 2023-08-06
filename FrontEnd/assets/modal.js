@@ -231,7 +231,10 @@ document.querySelector('.validate').addEventListener('click', async (event) => {
       throw new Error('Erreur lors de l\'ajout de l\'élément à la galerie');
     }
 
+   
     // Mettre à jour la galerie des images
+    showImages();
+
   } catch (error) {
     console.log(error.message);
   }
@@ -239,7 +242,6 @@ document.querySelector('.validate').addEventListener('click', async (event) => {
 
 
 
-showImages();
 
 
 
