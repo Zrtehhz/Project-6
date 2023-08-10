@@ -197,49 +197,75 @@ document.querySelector('.add').addEventListener('click', () => {
 document.querySelector('.btn-return').addEventListener('click', () => {
   document.getElementById('modalAddPhoto').style.display = 'none'; // Masquer la modale d'ajout de photo
   document.getElementById('modalOverlay').style.display = 'block'; // Afficher la modale principale
-});
+});document.addEventListener('DOMContentLoaded', function() {
 
-// Fonction pour ajouter une photo
-document.querySelector('.validate').addEventListener('click', async (event) => {
+  const titleInput = document.getElementById('inputTitre');
+  const categorySelect = document.getElementById('selectCategorie');
+  const validateButton = document.querySelector('.validate');
+  const photoInp = document.getElementById('photoInput');
 
-  event.preventDefault();
+  // Fonction pour vérifier si le bouton doit être affiché ou caché
+  function checkInputs() {
+      if (titleInput.value.trim() !== "" && categorySelect.value !== "") {
+        validateButton.style.display = 'block'; // Afficher le bouton
 
-  const apiUrl = 'http://localhost:5678/api/works';
-  const formData = new FormData();
-  
-  const token = window.sessionStorage.getItem('token');
-
-  // Récupérer les valeurs saisies
-  const imageUrl = previewImage.src;
-  const title = document.getElementById('inputTitre').value;
-  const categoryId = parseInt(document.getElementById('selectCategorie').value);
-
-  formData.append('image', photoInp.files[0]);
-  formData.append('title', title);
-  formData.append('category', categoryId);
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error('Erreur lors de l\'ajout de l\'élément à la galerie');
-    }
-
-   
-    // Mettre à jour la galerie des images
-    showImages();
-
-  } catch (error) {
-    console.log(error.message);
+      }
   }
+
+  // Remplir automatiquement le champ inputTitre avec le nom du fichier sans son extension
+  photoInp.addEventListener('change', function() {
+    const fullFilename = this.files[0].name;
+    const filenameWithoutExtension = fullFilename.replace(/\.[^/.]+$/, "");
+    titleInput.value = filenameWithoutExtension;
+    checkInputs(); 
 });
 
+
+  // Attachement des écouteurs d'événements pour vérifier les entrées
+  titleInput.addEventListener('input', checkInputs);
+  categorySelect.addEventListener('change', checkInputs);
+
+  // Cacher le bouton au chargement initial de la page
+  validateButton.style.display = 'none';
+
+  // Fonction pour ajouter une photo
+  validateButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      const apiUrl = 'http://localhost:5678/api/works';
+      const formData = new FormData();
+
+      const token = window.sessionStorage.getItem('token');
+
+      const imageUrl = previewImage.src;
+      const title = titleInput.value;
+      const categoryId = parseInt(categorySelect.value);
+
+      formData.append('image', photoInp.files[0]);
+      formData.append('title', title);
+      formData.append('category', categoryId);
+
+      try {
+          const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                  'Authorization': `Bearer ${token}`,
+              },
+              body: formData,
+          });
+
+          if (!response.ok) {
+              throw new Error('Erreur lors de l\'ajout de l\'élément à la galerie');
+          }
+          alert('Image ajoutée avec succès');
+          showImages();
+
+      } catch (error) {
+          console.log(error.message);
+      }
+  });
+
+});
 
 
 
@@ -365,7 +391,6 @@ async function showImages() {
 
     const apiData = await response.json();
 
-    // Effacer les anciennes images avant d'afficher les nouvelles
     divGallery.innerHTML = '';
 
     apiData.forEach((element) => {

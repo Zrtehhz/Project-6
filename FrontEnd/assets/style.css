@@ -534,7 +534,7 @@ hr {
 .photoP {
 	align-items: center;
 	position: absolute;
-	top: 230px;
+	top: 270px;
 	right: 250px;
 	background: rgba(203, 214, 220, 1);
 	color:rgba(48, 102, 133, 1);
@@ -550,7 +550,7 @@ hr {
 .textP {
 	align-items: center;
 	position: absolute;
-	top: 270px;
+	top: 308px;
 	right: 290px;
 	color:rgb(0, 0, 0);
 	padding: 15px;
@@ -636,3 +636,12 @@ hr {
 	width: 100%;
 }
 
+
+.logoimgInput {
+
+    display: flex;
+    top: 160px;
+    left: 280px;
+    width: 100px;
+    position: absolute;
+}

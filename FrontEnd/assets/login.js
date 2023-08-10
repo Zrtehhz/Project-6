@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+
   function handleLogin() {
     const loginForm = document.querySelector('#login_Form');
     const emailInput = document.querySelector('#email');
     const passwordInput = document.querySelector('#password');
-    const loginLink = document.querySelector('.login');
+    const errorMessage = document.getElementById('error-message');
 
     loginForm.addEventListener('submit', async function(event) {
       event.preventDefault();
@@ -28,16 +29,15 @@ document.addEventListener('DOMContentLoaded', function() {
           window.sessionStorage.setItem('token', data.token);
           loginForm.reset();
           window.location.href = 'index.html';
-
         } else {
-          alert('Identifiants incorrects');
+          errorMessage.style.display = 'block'; // Affiche le message d'erreur
         }
       } catch (error) {
         console.error('Error:', error);
       }
     });
-  } // Fermeture de la fonction handleLogin
+  } // Fin de la fonction handleLogin
+
   handleLogin(); // Appel de la fonction handleLogin pour configurer l'écouteur d'événements
 
 });
-

@@ -263,3 +263,11 @@ nav li a:hover {
 footer {
     margin-top: 18%;
 }
+
+.idError {
+	display: none;
+	color: red;
+	position: absolute;
+    top: 255px;
+    left: 870px; 
+}
