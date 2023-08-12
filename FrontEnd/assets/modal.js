@@ -1,5 +1,5 @@
 // Partie Filtres
-
+let url = 'http://localhost:5678/api/works';
 // Initialisation de tableaux vides pour stocker les données
 const items = [];
 const categories = [];
@@ -462,7 +462,6 @@ async function onDeleteImage(e) {
 
 // Fonction pour afficher les images
 async function showImages() {
-  const apiUrl = 'http://localhost:5678/api/works';
   const divGallery = document.querySelector('.gallery-modal');
 
   if (!divGallery) {
@@ -471,7 +470,7 @@ async function showImages() {
   }
 
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Impossible de récupérer les images.");
     }
