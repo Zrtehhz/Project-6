@@ -56,7 +56,7 @@
 			<div class="modifier">
 				<h2>Mes Projets</h2>
 				<i id="icone" class="fa-solid fa-pen-to-square"></i>
-				<button href="#" class="modification" id="Modifie">Modifier</button>
+				<button  class="modification" id="Modifie">Modifier</button>
 				<div class="modal-overlay" id="modalOverlay">
 					<div class="modal">
 							<h3>Galerie photo</h3>
@@ -81,13 +81,13 @@
 							</div>
 							
 							<label for="photoInput" class="custom-file-input-label"></label>
-							<img class="logoimgInput" src="./assets/images/logoimginput.png" alt="">
+							<img onclick="photoInput()" class="logoimgInput" src="./assets/images/logoimginput.png" alt="">
 							<a href="#" onclick="photoInput()" class="photoP">+ Ajouter une photo</a>
 							<a href="#" onclick="photoInput()" class="textP">jpg, png : 4mo max</a>
 							<div class="image-container">
-								<img id="previewImage" src="" alt="Aperçu de la photo">
+								<img id="previewImage" src="#" alt="Aperçu de la photo">
 							</div>
-							<input type="file" id="photoInput" accept="image/*" placeholder="Ajouter une photo">
+							<input type="file" id="photoInput" accept="image/*">
 
 								<input class="PhotoCategory" type="text" id="inputTitre">
 								<select class="PhotoCategory" id="selectCategorie">
@@ -181,8 +181,8 @@
 			</ul>
 		</nav>
 	</footer>
-	<script type="text/javascript" src="./assets/Categories.js"></script>
-	<script type="text/javascript" src="./assets/Modal.js"></script>
+<!-- 	<script type="text/javascript" src="./assets/Categories.js"></script>
+ -->	<script type="text/javascript" src="./assets/Modal.js"></script>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

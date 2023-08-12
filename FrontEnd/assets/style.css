@@ -644,4 +644,5 @@ hr {
     left: 280px;
     width: 100px;
     position: absolute;
+	cursor: pointer;
 }

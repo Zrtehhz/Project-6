@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <link rel="stylesheet" href="./login.css">
     </head>
+<body>
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <nav>
@@ -21,20 +22,18 @@
             </ul>
         </nav>
     </header>
-<body>
     <p id="error-message" class="idError">Identifiants incorrects</p>
     <h2>Log In</h2>
     <form id="login_Form" action="#" method="POST">
         <label class="label1">E-mail</label>
         <input class="input1" type="email" name="email" id="email"  required>
         <label class="label2">Mot de passe</label>
-        <input class="input1" type="password" id="password" name="password" min="4" max="60"  required>
+        <input class="input1" type="password" id="password" name="password" required>
         <input class="buttonA" type="submit" value="Se connecter">
         <a href="#" class="MdpLost">Mot de passe oublié</a>
       </form>
       
       <script type="text/javascript" src="./assets/login.js"></script>
-    </body>
 <footer>
 	<nav>
 		<ul>
@@ -42,7 +41,9 @@
 		</ul>
 	</nav>
 </footer>
-<script type="text/javascript" src="./assets/categories.js"></script>
+</body>
+
+    <script type="text/javascript" src="./assets/categories.js"></script>
 	<script type="text/javascript" src="./assets/modal.js"></script>
 	<script type="text/javascript" src="./assets/login.js"></script>
 </html>
