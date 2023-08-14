@@ -235,6 +235,47 @@ document.querySelector('.btn-return').addEventListener('click', () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  function resetModal() {
+    // Vider l'aperçu de l'image
+    document.getElementById('previewImage').src = '#';
+    previewImage.style.display = 'none';
+    previewImage.src = '';
+
+    // Réinitialiser le champ d'entrée du fichier
+    document.querySelector('.photoP').style.display = 'block';
+    document.querySelector('.textP').style.display = 'block';
+    document.getElementById('photoInput').value = '';
+
+    // Vider le champ du titre
+    document.getElementById('inputTitre').value = '';
+
+    // Réinitialiser la valeur du sélecteur de catégorie
+    document.getElementById('selectCategorie').selectedIndex = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
   // Fonction pour ajouter une photo
   validateButton.addEventListener('click', async (event) => {
       event.preventDefault();
@@ -264,6 +305,7 @@ document.querySelector('.btn-return').addEventListener('click', () => {
           }
           alert('Image ajoutée avec succès');
           showImages();
+          resetModal();
 
       } catch (error) {
           console.log(error.message);
@@ -467,25 +509,21 @@ document.addEventListener('DOMContentLoaded', function () {
       reader.readAsDataURL(file);
     } else {
       previewImage.src = '';
-      previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
-
-      // Passer les balises <a> et <p> en z-index 25
-      photoP.style.zIndex = 25;
-      textP.style.zIndex = 25;
-      // Remettre l'image en arrière-plan
-      previewImage.style.zIndex = -1;
+      photoP.style.zIndex = 26;
+      textP.style.zIndex = 27;
     }
   });
 });
 
 
 
+
   // Pour que quand je clique sur ma balise A et P ça exécute le input
   function photoInput() {
     // Récupérer l'input de type file
-    const photoInput = document.getElementById('photoInput');
+    const photoInput = document.getElementById('photoInput').click();    ;
 
     // Simuler un clic sur l'input de type file
     photoInput.click();
+    
   }
-
