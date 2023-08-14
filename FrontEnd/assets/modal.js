@@ -231,6 +231,10 @@ document.querySelector('.btn-return').addEventListener('click', () => {
   // Cacher le bouton au chargement initial de la page
   validateButton.style.display = 'none';
 
+
+
+
+
   // Fonction pour ajouter une photo
   validateButton.addEventListener('click', async (event) => {
       event.preventDefault();
@@ -239,7 +243,6 @@ document.querySelector('.btn-return').addEventListener('click', () => {
 
       const token = window.sessionStorage.getItem('token');
 
-      const imageUrl = previewImage.src;
       const title = titleInput.value;
       const categoryId = parseInt(categorySelect.value);
 
@@ -274,52 +277,6 @@ document.querySelector('.btn-return').addEventListener('click', () => {
 
 
 
-
-
-// Permet de voir l'image affiché sur notre input
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const photoInput = document.getElementById('photoInput');
-    const previewImage = document.getElementById('previewImage');
-    const photoP = document.querySelector('.photoP');
-    const textP = document.querySelector('.textP');
-
-    photoInput.addEventListener('change', function () {
-      const file = photoInput.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function () {
-          previewImage.src = reader.result;
-          previewImage.style.display = 'block'; // Afficher l'image sélectionnée
-
-          // Passer les balises <a> et <p> en z-index -1 (derrière l'image)
-          photoP.style.zIndex = -1;
-          textP.style.zIndex = -1;
-          // Mettre l'image au-dessus des balises <a> et <p>
-          previewImage.style.zIndex = 25;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        previewImage.src = '';
-        previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
-
-        // Passer les balises <a> et <p> en z-index 25
-        photoP.style.zIndex = 25;
-        textP.style.zIndex = 25;
-        // Remettre l'image en arrière-plan
-        previewImage.style.zIndex = -1;
-      }
-    });
-  });
-
-
-
-
-
-
-
-
-
 // Fonction pour supprimer une image
 async function deleteImage() {
   const deleteIcons = document.querySelectorAll('.delete-icon');
@@ -340,7 +297,7 @@ async function onDeleteImage(e) {
 
   const deleteIcon = e.target;
   const image_Container = deleteIcon.closest('.image-contain');
-  const id = deleteIcon.getAttribute('data-id');
+   const id = deleteIcon.getAttribute('data-id');
   const token = window.sessionStorage.getItem('token');
 
   // Appeler l'API pour supprimer l'image avec l'ID correspondant
@@ -367,17 +324,6 @@ async function onDeleteImage(e) {
     console.error("Erreur lors de la suppression de l'image :", error);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Fonction pour afficher les images
@@ -434,9 +380,51 @@ async function showImages() {
   }
 }
 
+
+
+
+
+
 // Appel la fonction showImages au chargement de la page
 window.onload = showImages;
 
+
+
+// Permet de voir l'image affiché sur notre input
+
+document.addEventListener('DOMContentLoaded', function () {
+  const photoInput = document.getElementById('photoInput');
+  const previewImage = document.getElementById('previewImage');
+  const photoP = document.querySelector('.photoP');
+  const textP = document.querySelector('.textP');
+
+  photoInput.addEventListener('change', function () {
+    const file = photoInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        previewImage.src = reader.result;
+        previewImage.style.display = 'block'; // Afficher l'image sélectionnée
+
+        // Passer les balises <a> et <p> en z-index -1 (derrière l'image)
+        photoP.style.zIndex = -1;
+        textP.style.zIndex = -1;
+        // Mettre l'image au-dessus des balises <a> et <p>
+        previewImage.style.zIndex = 25;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      previewImage.src = '';
+      previewImage.style.display = 'none'; // Masquer l'image s'il n'y a pas de sélection de fichier
+
+      // Passer les balises <a> et <p> en z-index 25
+      photoP.style.zIndex = 25;
+      textP.style.zIndex = 25;
+      // Remettre l'image en arrière-plan
+      previewImage.style.zIndex = -1;
+    }
+  });
+});
 
 
 
