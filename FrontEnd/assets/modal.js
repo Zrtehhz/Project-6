@@ -274,6 +274,56 @@ document.querySelector('.btn-return').addEventListener('click', () => {
 
 
 
+async function GalerieRefresh() {
+  // Fonction pour récupérer les données
+  const fetchData = async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Erreur lors de la récupération des données');
+    }
+    return await response.json();
+  };
+
+  try {
+    // Récupérer les nouvelles données
+    const fetchedCategories = await fetchData('http://localhost:5678/api/categories');
+    const fetchedItems = await fetchData('http://localhost:5678/api/works');
+
+    // Mise à jour des tableaux globaux
+    items.length = 0;
+    categories.length = 0;
+    
+    categories.push({ id: 0, name: 'Tous' }, ...fetchedCategories);
+    items.push(...fetchedItems);
+
+    // Remplissage de la galerie
+    displayItems(items);
+
+    // (Optionnel) Si vous voulez également mettre à jour les filtres
+    const filterContainer = document.getElementById('filtres');
+    filterContainer.innerHTML = '';
+
+    categories.forEach(category => {
+      const button = document.createElement('button');
+      button.textContent = category.name;
+      button.dataset.categoryId = category.id;
+
+      button.addEventListener('click', () => {
+        filterByCategory(parseInt(button.dataset.categoryId));
+        filterContainer.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+
+      filterContainer.appendChild(button);
+    });
+
+  } catch (error) {
+    console.log('Erreur lors de la récupération des données:', error.message);
+  }
+}
+
+// Appel initial lors du chargement de la page
+document.addEventListener('DOMContentLoaded', GalerieRefresh);
 
 
 
@@ -320,6 +370,7 @@ async function onDeleteImage(e) {
 
     // Mettre à jour dynamiquement la galerie après la suppression
     showImages();
+    GalerieRefresh();
   } catch (error) {
     console.error("Erreur lors de la suppression de l'image :", error);
   }
@@ -375,6 +426,7 @@ async function showImages() {
 
     // Attachez l'événement de suppression aux nouvelles icônes de suppression
     deleteImage();
+    GalerieRefresh();
   } catch (error) {
     console.error("Erreur lors de l'affichage des images :", error.message);
   }
