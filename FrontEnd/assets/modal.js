@@ -453,8 +453,13 @@ async function showImages() {
       deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
       deleteIcon.dataset.id = element.id;
 
+      const hoverIcon = document.createElement('i');
+      hoverIcon.classList.add('fa-solid', 'fa-arrows-up-down-left-right', 'hover-icon');
+
       image_Container.appendChild(imgElement);
       image_Container.appendChild(deleteIcon);
+      image_Container.appendChild(hoverIcon);
+
 
       jimElement.appendChild(image_Container);
 

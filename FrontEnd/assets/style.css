@@ -591,6 +591,24 @@ hr {
 	cursor: pointer;
   }
 
+  .hover-icon {
+	position: absolute;
+	top: 5px;
+	right: 37px;
+	color: rgb(255, 255, 255);
+	display: none;
+	background: #000;
+	padding: 5px;
+	font-size: 20px;
+	cursor: pointer;
+
+  }
+  
+  .image-contain:hover .hover-icon {
+	display: block;
+  }
+  
+
   .place-icon {
 	position: absolute;
 	top: 5px;
@@ -647,3 +665,4 @@ hr {
     position: absolute;
 	cursor: pointer;
 }
+  
