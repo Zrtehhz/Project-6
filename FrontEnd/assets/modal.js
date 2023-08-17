@@ -303,7 +303,6 @@ document.querySelector('.btn-return').addEventListener('click', () => {
           if (!response.ok) {
               throw new Error('Erreur lors de l\'ajout de l\'élément à la galerie');
           }
-          alert('Image ajoutée avec succès');
           showImages();
           resetModal();
 
